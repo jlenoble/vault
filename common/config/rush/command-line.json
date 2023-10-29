@@ -175,6 +175,17 @@
         //    */
         //   // "autoinstallerName": "my-task"
         // }
+
+        {
+            "name": "verdaccio",
+            "commandKind": "global",
+            "summary": "Launch the verdaccio server",
+
+            "autoinstallerName": "rush-verdaccio",
+
+            "shellCommand": "verdaccio",
+            "safeForSimultaneousRushProcesses": true
+        }
     ],
 
     /**
