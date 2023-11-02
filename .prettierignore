@@ -78,11 +78,14 @@ common/autoinstallers/*/.npmrc
 .cache
 .heft
 
+# Custom
+temp
+
 #-------------------------------------------------------------------------------------------------------------------
 # Prettier-specific overrides
 #-------------------------------------------------------------------------------------------------------------------
 
-# Machine-egnerated files
+# Machine-generated files
 common/reviews
 common/changes
 common/scripts
