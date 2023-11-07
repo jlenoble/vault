@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren } from "react";
+import type { FunctionComponent, PropsWithChildren } from "react";
 import { Spinner } from "./components";
 
 export const CenteredSpinner = () => (
