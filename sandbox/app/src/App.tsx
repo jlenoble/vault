@@ -3,7 +3,11 @@ const HelloWorld = () => {
 };
 
 function App() {
-    return <HelloWorld />;
+    return (
+        <div className="grid h-screen place-items-center">
+            <HelloWorld />
+        </div>
+    );
 }
 
 export default App;
