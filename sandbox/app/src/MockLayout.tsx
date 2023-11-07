@@ -33,9 +33,9 @@ const Body: FunctionComponent<PropsWithChildren> = ({ children }) => (
     </div>
 );
 const Footer = () => (
-    <header className="h-20 w-full bg-blue-300">
+    <footer className="h-20 w-full bg-blue-300">
         <CenteredSpinner />
-    </header>
+    </footer>
 );
 
 const MockLayout: FunctionComponent<PropsWithChildren> = ({ children }) => (
