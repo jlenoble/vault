@@ -1,9 +1,9 @@
 export default {
-    printWidth: 110,
+	printWidth: 110,
 
-    endOfLine: "lf",
+	endOfLine: "lf",
 
-    tabWidth: 4,
+	useTabs: true,
 
-    plugins: ["prettier-plugin-tailwindcss"],
+	plugins: ["prettier-plugin-tailwindcss"],
 };
