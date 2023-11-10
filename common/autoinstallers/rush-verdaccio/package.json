@@ -1,8 +1,8 @@
 {
-    "name": "rush-verdaccio",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-        "verdaccio": "^5.27.0"
-    }
+	"name": "rush-verdaccio",
+	"version": "1.0.0",
+	"private": true,
+	"dependencies": {
+		"verdaccio": "^5.27.0"
+	}
 }

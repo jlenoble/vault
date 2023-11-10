@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .react-flow__panel.react-flow__attribution {
-    display: none !important;
+	display: none !important;
 }
