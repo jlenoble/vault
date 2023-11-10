@@ -1,0 +1,15 @@
+{
+	"description": "Organon's Prettier config",
+	"license": "MIT",
+	"main": "index.json",
+	"name": "@organon/prettier-config",
+	"publishConfig": {
+		"access": "public"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jlenoble/vault",
+		"directory": "configs/prettier"
+	},
+	"version": "1.0.0"
+}
