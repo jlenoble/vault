@@ -341,6 +341,11 @@
 	 */
 	"projects": [
 		{
+			"packageName": "@organon/prettier-config",
+			"projectFolder": "configs/prettier",
+			"shouldPublish": false
+		},
+		{
 			"packageName": "app",
 			"projectFolder": "sandbox/app",
 			"shouldPublish": false
