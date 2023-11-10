@@ -6,10 +6,10 @@ Make sure the selector has higher specificity, e.g. by prefixing it with your ap
 
 ```css
 .your-app .excalidraw {
-  --color-primary: red;
+	--color-primary: red;
 }
 .your-app .excalidraw.theme--dark {
-  --color-primary: pink;
+	--color-primary: pink;
 }
 ```
 
@@ -25,25 +25,26 @@ For a complete list of variables, check [theme.scss](https://github.com/excalidr
 
 ```css showLineNumbers
 .custom-styles .excalidraw {
-  --color-primary: #fcc6d9;
-  --color-primary-darker: #f783ac;
-  --color-primary-darkest: #e64980;
-  --color-primary-light: #f2a9c4;
+	--color-primary: #fcc6d9;
+	--color-primary-darker: #f783ac;
+	--color-primary-darkest: #e64980;
+	--color-primary-light: #f2a9c4;
 }
 
 .custom-styles .excalidraw.theme--dark {
-  --color-primary: #d494aa;
-  --color-primary-darker: #d64c7e;
-  --color-primary-darkest: #e86e99;
-  --color-primary-light: #dcbec9;
+	--color-primary: #d494aa;
+	--color-primary-darker: #d64c7e;
+	--color-primary-darkest: #e86e99;
+	--color-primary-light: #dcbec9;
 }
 ```
+
 ```tsx live
 function App() {
-  return (
-    <div style={{ height: "500px" }} className="custom-styles">
-      <Excalidraw />
-    </div>
-  );
+	return (
+		<div style={{ height: "500px" }} className="custom-styles">
+			<Excalidraw />
+		</div>
+	);
 }
 ```

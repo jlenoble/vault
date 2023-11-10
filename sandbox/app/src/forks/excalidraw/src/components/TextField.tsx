@@ -1,79 +1,61 @@
-import {
-  forwardRef,
-  useRef,
-  useImperativeHandle,
-  KeyboardEvent,
-  useLayoutEffect,
-} from "react";
+import { forwardRef, useRef, useImperativeHandle, KeyboardEvent, useLayoutEffect } from "react";
 import clsx from "clsx";
 
 import "./TextField.scss";
 
 export type TextFieldProps = {
-  value?: string;
+	value?: string;
 
-  onChange?: (value: string) => void;
-  onClick?: () => void;
-  onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
+	onChange?: (value: string) => void;
+	onClick?: () => void;
+	onKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void;
 
-  readonly?: boolean;
-  fullWidth?: boolean;
-  selectOnRender?: boolean;
+	readonly?: boolean;
+	fullWidth?: boolean;
+	selectOnRender?: boolean;
 
-  label?: string;
-  placeholder?: string;
+	label?: string;
+	placeholder?: string;
 };
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  (
-    {
-      value,
-      onChange,
-      label,
-      fullWidth,
-      placeholder,
-      readonly,
-      selectOnRender,
-      onKeyDown,
-    },
-    ref,
-  ) => {
-    const innerRef = useRef<HTMLInputElement | null>(null);
+	({ value, onChange, label, fullWidth, placeholder, readonly, selectOnRender, onKeyDown }, ref) => {
+		const innerRef = useRef<HTMLInputElement | null>(null);
 
-    useImperativeHandle(ref, () => innerRef.current!);
+		useImperativeHandle(ref, () => innerRef.current!);
 
-    useLayoutEffect(() => {
-      if (selectOnRender) {
-        innerRef.current?.select();
-      }
-    }, [selectOnRender]);
+		useLayoutEffect(() => {
+			if (selectOnRender) {
+				innerRef.current?.select();
+			}
+		}, [selectOnRender]);
 
-    return (
-      <div
-        className={clsx("ExcTextField", {
-          "ExcTextField--fullWidth": fullWidth,
-        })}
-        onClick={() => {
-          innerRef.current?.focus();
-        }}
-      >
-        <div className="ExcTextField__label">{label}</div>
-        <div
-          className={clsx("ExcTextField__input", {
-            "ExcTextField__input--readonly": readonly,
-          })}
-        >
-          <input
-            readOnly={readonly}
-            type="text"
-            value={value}
-            placeholder={placeholder}
-            ref={innerRef}
-            onChange={(event) => onChange?.(event.target.value)}
-            onKeyDown={onKeyDown}
-          />
-        </div>
-      </div>
-    );
-  },
+		return (
+			<div
+				className={clsx("ExcTextField", {
+					"ExcTextField--fullWidth": fullWidth,
+				})}
+				onClick={() => {
+					innerRef.current?.focus();
+				}}
+			>
+				<div className="ExcTextField__label">{label}</div>
+				<div
+					className={clsx("ExcTextField__input", {
+						"ExcTextField__input--readonly": readonly,
+					})}
+				>
+					<input
+						readOnly={readonly}
+						type="text"
+						value={value}
+						placeholder={placeholder}
+						ref={innerRef}
+						onChange={(event) => onChange?.(event.target.value)}
+						onKeyDown={onKeyDown}
+					/>
+				</div>
+			</div>
+		);
+	},
 );

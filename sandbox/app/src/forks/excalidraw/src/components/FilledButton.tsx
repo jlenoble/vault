@@ -8,57 +8,57 @@ export type ButtonColor = "primary" | "danger" | "warning" | "muted";
 export type ButtonSize = "medium" | "large";
 
 export type FilledButtonProps = {
-  label: string;
+	label: string;
 
-  children?: React.ReactNode;
-  onClick?: () => void;
+	children?: React.ReactNode;
+	onClick?: () => void;
 
-  variant?: ButtonVariant;
-  color?: ButtonColor;
-  size?: ButtonSize;
-  className?: string;
-  fullWidth?: boolean;
+	variant?: ButtonVariant;
+	color?: ButtonColor;
+	size?: ButtonSize;
+	className?: string;
+	fullWidth?: boolean;
 
-  startIcon?: React.ReactNode;
+	startIcon?: React.ReactNode;
 };
 
 export const FilledButton = forwardRef<HTMLButtonElement, FilledButtonProps>(
-  (
-    {
-      children,
-      startIcon,
-      onClick,
-      label,
-      variant = "filled",
-      color = "primary",
-      size = "medium",
-      fullWidth,
-      className,
-    },
-    ref,
-  ) => {
-    return (
-      <button
-        className={clsx(
-          "ExcButton",
-          `ExcButton--color-${color}`,
-          `ExcButton--variant-${variant}`,
-          `ExcButton--size-${size}`,
-          { "ExcButton--fullWidth": fullWidth },
-          className,
-        )}
-        onClick={onClick}
-        type="button"
-        aria-label={label}
-        ref={ref}
-      >
-        {startIcon && (
-          <div className="ExcButton__icon" aria-hidden>
-            {startIcon}
-          </div>
-        )}
-        {variant !== "icon" && (children ?? label)}
-      </button>
-    );
-  },
+	(
+		{
+			children,
+			startIcon,
+			onClick,
+			label,
+			variant = "filled",
+			color = "primary",
+			size = "medium",
+			fullWidth,
+			className,
+		},
+		ref,
+	) => {
+		return (
+			<button
+				className={clsx(
+					"ExcButton",
+					`ExcButton--color-${color}`,
+					`ExcButton--variant-${variant}`,
+					`ExcButton--size-${size}`,
+					{ "ExcButton--fullWidth": fullWidth },
+					className,
+				)}
+				onClick={onClick}
+				type="button"
+				aria-label={label}
+				ref={ref}
+			>
+				{startIcon && (
+					<div className="ExcButton__icon" aria-hidden>
+						{startIcon}
+					</div>
+				)}
+				{variant !== "icon" && (children ?? label)}
+			</button>
+		);
+	},
 );

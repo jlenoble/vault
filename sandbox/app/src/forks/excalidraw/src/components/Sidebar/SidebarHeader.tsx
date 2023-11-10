@@ -8,50 +8,45 @@ import { Tooltip } from "../Tooltip";
 import { Button } from "../Button";
 
 export const SidebarHeader = ({
-  children,
-  className,
+	children,
+	className,
 }: {
-  children?: React.ReactNode;
-  className?: string;
+	children?: React.ReactNode;
+	className?: string;
 }) => {
-  const device = useDevice();
-  const props = useContext(SidebarPropsContext);
+	const device = useDevice();
+	const props = useContext(SidebarPropsContext);
 
-  const renderDockButton = !!(
-    device.editor.canFitSidebar && props.shouldRenderDockButton
-  );
+	const renderDockButton = !!(device.editor.canFitSidebar && props.shouldRenderDockButton);
 
-  return (
-    <div
-      className={clsx("sidebar__header", className)}
-      data-testid="sidebar-header"
-    >
-      {children}
-      <div className="sidebar__header__buttons">
-        {renderDockButton && (
-          <Tooltip label={t("labels.sidebarLock")}>
-            <Button
-              onSelect={() => props.onDock?.(!props.docked)}
-              selected={!!props.docked}
-              className="sidebar__dock"
-              data-testid="sidebar-dock"
-              aria-label={t("labels.sidebarLock")}
-            >
-              {PinIcon}
-            </Button>
-          </Tooltip>
-        )}
-        <Button
-          data-testid="sidebar-close"
-          className="sidebar__close"
-          onSelect={props.onCloseRequest}
-          aria-label={t("buttons.close")}
-        >
-          {CloseIcon}
-        </Button>
-      </div>
-    </div>
-  );
+	return (
+		<div className={clsx("sidebar__header", className)} data-testid="sidebar-header">
+			{children}
+			<div className="sidebar__header__buttons">
+				{renderDockButton && (
+					<Tooltip label={t("labels.sidebarLock")}>
+						<Button
+							onSelect={() => props.onDock?.(!props.docked)}
+							selected={!!props.docked}
+							className="sidebar__dock"
+							data-testid="sidebar-dock"
+							aria-label={t("labels.sidebarLock")}
+						>
+							{PinIcon}
+						</Button>
+					</Tooltip>
+				)}
+				<Button
+					data-testid="sidebar-close"
+					className="sidebar__close"
+					onSelect={props.onCloseRequest}
+					aria-label={t("buttons.close")}
+				>
+					{CloseIcon}
+				</Button>
+			</div>
+		</div>
+	);
 };
 
 SidebarHeader.displayName = "SidebarHeader";

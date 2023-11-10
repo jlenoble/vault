@@ -3,12 +3,12 @@ import { composeEventHandlers } from "../utils";
 import "./Button.scss";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  type?: "button" | "submit" | "reset";
-  onSelect: () => any;
-  /** whether button is in active state */
-  selected?: boolean;
-  children: React.ReactNode;
-  className?: string;
+	type?: "button" | "submit" | "reset";
+	onSelect: () => any;
+	/** whether button is in active state */
+	selected?: boolean;
+	children: React.ReactNode;
+	className?: string;
 }
 
 /**
@@ -17,23 +17,23 @@ interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
  * Accepts all props that a regular `button` element accepts.
  */
 export const Button = ({
-  type = "button",
-  onSelect,
-  selected,
-  children,
-  className = "",
-  ...rest
+	type = "button",
+	onSelect,
+	selected,
+	children,
+	className = "",
+	...rest
 }: ButtonProps) => {
-  return (
-    <button
-      onClick={composeEventHandlers(rest.onClick, (event) => {
-        onSelect();
-      })}
-      type={type}
-      className={clsx("excalidraw-button", className, { selected })}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
+	return (
+		<button
+			onClick={composeEventHandlers(rest.onClick, (event) => {
+				onSelect();
+			})}
+			type={type}
+			className={clsx("excalidraw-button", className, { selected })}
+			{...rest}
+		>
+			{children}
+		</button>
+	);
 };

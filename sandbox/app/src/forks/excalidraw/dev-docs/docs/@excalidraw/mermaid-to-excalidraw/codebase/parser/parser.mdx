@@ -2,7 +2,6 @@
 
 [This](https://github.com/excalidraw/mermaid-to-excalidraw/blob/master/src/index.ts) is the entry point of the library.
 
-
 `parseMermaidToExcalidraw` function is the only function exposed which receives mermaid syntax as the input, parses the mermaid syntax and resolves to Excalidraw Skeleton.
 
 Lets look at the high level overview at how the parse works :point_down:
@@ -17,6 +16,7 @@ One of the dependencies of the library is [`mermaid`](https://www.npmjs.com/pack
 We need the mermaid diagram in some extractable format so we can parse it to Excalidraw Elements.
 
 Parsing is broken into two steps
+
 1. [`Rendering Mermaid to Svg`](/docs/@excalidraw/mermaid-to-excalidraw/codebase/parser#rendering-mermaid-to-svg) - This helps in determining the position and dimensions of each element in the diagram
 
 2. [`Parsing the mermaid syntax`](/docs/@excalidraw/mermaid-to-excalidraw/codebase/parser#parsing-the-mermaid-syntax) - We also need to know how elements are connected which isn't possible with svg alone hence we also parse the mermaid syntax which helps in determining the connections and bindings between elements in the diagram.
@@ -27,9 +27,7 @@ Parsing is broken into two steps
 
 The [`mermaid`](https://www.npmjs.com/package/mermaid) library provides the API `mermaid.render` API which gives the output of the diagram in `svg`.
 
-
 If the diagram isn't supported, this svg is converted to `dataURL` and can be rendered as an image in Excalidraw.
-
 
 ### Parsing the mermaid syntax
 

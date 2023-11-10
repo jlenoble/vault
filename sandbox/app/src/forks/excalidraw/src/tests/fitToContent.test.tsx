@@ -7,171 +7,171 @@ import { vi } from "vitest";
 const { h } = window;
 
 describe("fitToContent", () => {
-  it("should zoom to fit the selected element", async () => {
-    await render(<Excalidraw />);
+	it("should zoom to fit the selected element", async () => {
+		await render(<Excalidraw />);
 
-    h.state.width = 10;
-    h.state.height = 10;
+		h.state.width = 10;
+		h.state.height = 10;
 
-    const rectElement = API.createElement({
-      width: 50,
-      height: 100,
-      x: 50,
-      y: 100,
-    });
+		const rectElement = API.createElement({
+			width: 50,
+			height: 100,
+			x: 50,
+			y: 100,
+		});
 
-    expect(h.state.zoom.value).toBe(1);
+		expect(h.state.zoom.value).toBe(1);
 
-    h.app.scrollToContent(rectElement, { fitToContent: true });
+		h.app.scrollToContent(rectElement, { fitToContent: true });
 
-    // element is 10x taller than the viewport size,
-    // zoom should be at least 1/10
-    expect(h.state.zoom.value).toBeLessThanOrEqual(0.1);
-  });
+		// element is 10x taller than the viewport size,
+		// zoom should be at least 1/10
+		expect(h.state.zoom.value).toBeLessThanOrEqual(0.1);
+	});
 
-  it("should zoom to fit multiple elements", async () => {
-    await render(<Excalidraw />);
+	it("should zoom to fit multiple elements", async () => {
+		await render(<Excalidraw />);
 
-    const topLeft = API.createElement({
-      width: 20,
-      height: 20,
-      x: 0,
-      y: 0,
-    });
+		const topLeft = API.createElement({
+			width: 20,
+			height: 20,
+			x: 0,
+			y: 0,
+		});
 
-    const bottomRight = API.createElement({
-      width: 20,
-      height: 20,
-      x: 80,
-      y: 80,
-    });
+		const bottomRight = API.createElement({
+			width: 20,
+			height: 20,
+			x: 80,
+			y: 80,
+		});
 
-    h.state.width = 10;
-    h.state.height = 10;
+		h.state.width = 10;
+		h.state.height = 10;
 
-    expect(h.state.zoom.value).toBe(1);
+		expect(h.state.zoom.value).toBe(1);
 
-    h.app.scrollToContent([topLeft, bottomRight], {
-      fitToContent: true,
-    });
+		h.app.scrollToContent([topLeft, bottomRight], {
+			fitToContent: true,
+		});
 
-    // elements take 100x100, which is 10x bigger than the viewport size,
-    // zoom should be at least 1/10
-    expect(h.state.zoom.value).toBeLessThanOrEqual(0.1);
-  });
+		// elements take 100x100, which is 10x bigger than the viewport size,
+		// zoom should be at least 1/10
+		expect(h.state.zoom.value).toBeLessThanOrEqual(0.1);
+	});
 
-  it("should scroll the viewport to the selected element", async () => {
-    await render(<Excalidraw />);
+	it("should scroll the viewport to the selected element", async () => {
+		await render(<Excalidraw />);
 
-    h.state.width = 10;
-    h.state.height = 10;
+		h.state.width = 10;
+		h.state.height = 10;
 
-    const rectElement = API.createElement({
-      width: 100,
-      height: 100,
-      x: 100,
-      y: 100,
-    });
+		const rectElement = API.createElement({
+			width: 100,
+			height: 100,
+			x: 100,
+			y: 100,
+		});
 
-    expect(h.state.zoom.value).toBe(1);
-    expect(h.state.scrollX).toBe(0);
-    expect(h.state.scrollY).toBe(0);
+		expect(h.state.zoom.value).toBe(1);
+		expect(h.state.scrollX).toBe(0);
+		expect(h.state.scrollY).toBe(0);
 
-    h.app.scrollToContent(rectElement);
+		h.app.scrollToContent(rectElement);
 
-    // zoom level should stay the same
-    expect(h.state.zoom.value).toBe(1);
+		// zoom level should stay the same
+		expect(h.state.zoom.value).toBe(1);
 
-    // state should reflect some scrolling
-    expect(h.state.scrollX).not.toBe(0);
-    expect(h.state.scrollY).not.toBe(0);
-  });
+		// state should reflect some scrolling
+		expect(h.state.scrollX).not.toBe(0);
+		expect(h.state.scrollY).not.toBe(0);
+	});
 });
 
 const waitForNextAnimationFrame = () => {
-  return new Promise((resolve) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(resolve);
-    });
-  });
+	return new Promise((resolve) => {
+		requestAnimationFrame(() => {
+			requestAnimationFrame(resolve);
+		});
+	});
 };
 
 describe("fitToContent animated", () => {
-  beforeEach(() => {
-    vi.spyOn(window, "requestAnimationFrame");
-  });
+	beforeEach(() => {
+		vi.spyOn(window, "requestAnimationFrame");
+	});
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
 
-  it("should ease scroll the viewport to the selected element", async () => {
-    await render(<Excalidraw />);
+	it("should ease scroll the viewport to the selected element", async () => {
+		await render(<Excalidraw />);
 
-    h.state.width = 10;
-    h.state.height = 10;
+		h.state.width = 10;
+		h.state.height = 10;
 
-    const rectElement = API.createElement({
-      width: 100,
-      height: 100,
-      x: -100,
-      y: -100,
-    });
+		const rectElement = API.createElement({
+			width: 100,
+			height: 100,
+			x: -100,
+			y: -100,
+		});
 
-    h.app.scrollToContent(rectElement, { animate: true });
+		h.app.scrollToContent(rectElement, { animate: true });
 
-    expect(window.requestAnimationFrame).toHaveBeenCalled();
+		expect(window.requestAnimationFrame).toHaveBeenCalled();
 
-    // Since this is an animation, we expect values to change through time.
-    // We'll verify that the scroll values change at 50ms and 100ms
-    expect(h.state.scrollX).toBe(0);
-    expect(h.state.scrollY).toBe(0);
+		// Since this is an animation, we expect values to change through time.
+		// We'll verify that the scroll values change at 50ms and 100ms
+		expect(h.state.scrollX).toBe(0);
+		expect(h.state.scrollY).toBe(0);
 
-    await waitForNextAnimationFrame();
+		await waitForNextAnimationFrame();
 
-    const prevScrollX = h.state.scrollX;
-    const prevScrollY = h.state.scrollY;
+		const prevScrollX = h.state.scrollX;
+		const prevScrollY = h.state.scrollY;
 
-    expect(h.state.scrollX).not.toBe(0);
-    expect(h.state.scrollY).not.toBe(0);
+		expect(h.state.scrollX).not.toBe(0);
+		expect(h.state.scrollY).not.toBe(0);
 
-    await waitForNextAnimationFrame();
+		await waitForNextAnimationFrame();
 
-    expect(h.state.scrollX).not.toBe(prevScrollX);
-    expect(h.state.scrollY).not.toBe(prevScrollY);
-  });
+		expect(h.state.scrollX).not.toBe(prevScrollX);
+		expect(h.state.scrollY).not.toBe(prevScrollY);
+	});
 
-  it("should animate the scroll but not the zoom", async () => {
-    await render(<Excalidraw />);
+	it("should animate the scroll but not the zoom", async () => {
+		await render(<Excalidraw />);
 
-    h.state.width = 50;
-    h.state.height = 50;
+		h.state.width = 50;
+		h.state.height = 50;
 
-    const rectElement = API.createElement({
-      width: 100,
-      height: 100,
-      x: 100,
-      y: 100,
-    });
+		const rectElement = API.createElement({
+			width: 100,
+			height: 100,
+			x: 100,
+			y: 100,
+		});
 
-    expect(h.state.scrollX).toBe(0);
-    expect(h.state.scrollY).toBe(0);
+		expect(h.state.scrollX).toBe(0);
+		expect(h.state.scrollY).toBe(0);
 
-    h.app.scrollToContent(rectElement, { animate: true, fitToContent: true });
+		h.app.scrollToContent(rectElement, { animate: true, fitToContent: true });
 
-    expect(window.requestAnimationFrame).toHaveBeenCalled();
+		expect(window.requestAnimationFrame).toHaveBeenCalled();
 
-    await waitForNextAnimationFrame();
+		await waitForNextAnimationFrame();
 
-    const prevScrollX = h.state.scrollX;
-    const prevScrollY = h.state.scrollY;
+		const prevScrollX = h.state.scrollX;
+		const prevScrollY = h.state.scrollY;
 
-    expect(h.state.scrollX).not.toBe(0);
-    expect(h.state.scrollY).not.toBe(0);
+		expect(h.state.scrollX).not.toBe(0);
+		expect(h.state.scrollY).not.toBe(0);
 
-    await waitForNextAnimationFrame();
+		await waitForNextAnimationFrame();
 
-    expect(h.state.scrollX).not.toBe(prevScrollX);
-    expect(h.state.scrollY).not.toBe(prevScrollY);
-  });
+		expect(h.state.scrollX).not.toBe(prevScrollX);
+		expect(h.state.scrollY).not.toBe(prevScrollY);
+	});
 });

@@ -7,56 +7,47 @@ import { DropdownMenuContentPropsContext } from "./common";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 
 const MenuContent = ({
-  children,
-  onClickOutside,
-  className = "",
-  onSelect,
-  style,
+	children,
+	onClickOutside,
+	className = "",
+	onSelect,
+	style,
 }: {
-  children?: React.ReactNode;
-  onClickOutside?: () => void;
-  className?: string;
-  /**
-   * Called when any menu item is selected (clicked on).
-   */
-  onSelect?: (event: Event) => void;
-  style?: React.CSSProperties;
+	children?: React.ReactNode;
+	onClickOutside?: () => void;
+	className?: string;
+	/**
+	 * Called when any menu item is selected (clicked on).
+	 */
+	onSelect?: (event: Event) => void;
+	style?: React.CSSProperties;
 }) => {
-  const device = useDevice();
-  const menuRef = useRef<HTMLDivElement>(null);
+	const device = useDevice();
+	const menuRef = useRef<HTMLDivElement>(null);
 
-  useOutsideClick(menuRef, () => {
-    onClickOutside?.();
-  });
+	useOutsideClick(menuRef, () => {
+		onClickOutside?.();
+	});
 
-  const classNames = clsx(`dropdown-menu ${className}`, {
-    "dropdown-menu--mobile": device.editor.isMobile,
-  }).trim();
+	const classNames = clsx(`dropdown-menu ${className}`, {
+		"dropdown-menu--mobile": device.editor.isMobile,
+	}).trim();
 
-  return (
-    <DropdownMenuContentPropsContext.Provider value={{ onSelect }}>
-      <div
-        ref={menuRef}
-        className={classNames}
-        style={style}
-        data-testid="dropdown-menu"
-      >
-        {/* the zIndex ensures this menu has higher stacking order,
+	return (
+		<DropdownMenuContentPropsContext.Provider value={{ onSelect }}>
+			<div ref={menuRef} className={classNames} style={style} data-testid="dropdown-menu">
+				{/* the zIndex ensures this menu has higher stacking order,
     see https://github.com/excalidraw/excalidraw/pull/1445 */}
-        {device.editor.isMobile ? (
-          <Stack.Col className="dropdown-menu-container">{children}</Stack.Col>
-        ) : (
-          <Island
-            className="dropdown-menu-container"
-            padding={2}
-            style={{ zIndex: 2 }}
-          >
-            {children}
-          </Island>
-        )}
-      </div>
-    </DropdownMenuContentPropsContext.Provider>
-  );
+				{device.editor.isMobile ? (
+					<Stack.Col className="dropdown-menu-container">{children}</Stack.Col>
+				) : (
+					<Island className="dropdown-menu-container" padding={2} style={{ zIndex: 2 }}>
+						{children}
+					</Island>
+				)}
+			</div>
+		</DropdownMenuContentPropsContext.Provider>
+	);
 };
 MenuContent.displayName = "DropdownMenuContent";
 

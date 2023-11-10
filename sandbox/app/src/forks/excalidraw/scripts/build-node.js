@@ -16,9 +16,9 @@ const config = defaults.__get__("config");
 // Disable multiple chunks
 config.optimization.runtimeChunk = false;
 config.optimization.splitChunks = {
-  cacheGroups: {
-    default: false,
-  },
+	cacheGroups: {
+		default: false,
+	},
 };
 // Set the filename to be deterministic
 config.output.filename = "static/js/build-node.js";
@@ -30,11 +30,8 @@ config.entry = "./src/index-node";
 // to just a string with the path of the canvas.node file. We need to tell
 // webpack to avoid rewriting that dependency.
 config.externals = (context, request, callback) => {
-  if (/\.node$/.test(request)) {
-    return callback(
-      null,
-      "commonjs ../../../node_modules/canvas/build/Release/canvas.node",
-    );
-  }
-  callback();
+	if (/\.node$/.test(request)) {
+		return callback(null, "commonjs ../../../node_modules/canvas/build/Release/canvas.node");
+	}
+	callback();
 };

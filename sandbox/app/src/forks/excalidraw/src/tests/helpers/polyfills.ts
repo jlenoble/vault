@@ -1,91 +1,89 @@
 class ClipboardEvent {
-  constructor(
-    type: "paste" | "copy",
-    eventInitDict: {
-      clipboardData: DataTransfer;
-    },
-  ) {
-    return Object.assign(
-      new Event("paste", {
-        bubbles: true,
-        cancelable: true,
-        composed: true,
-      }),
-      {
-        clipboardData: eventInitDict.clipboardData,
-      },
-    ) as any as ClipboardEvent;
-  }
+	constructor(
+		type: "paste" | "copy",
+		eventInitDict: {
+			clipboardData: DataTransfer;
+		},
+	) {
+		return Object.assign(
+			new Event("paste", {
+				bubbles: true,
+				cancelable: true,
+				composed: true,
+			}),
+			{
+				clipboardData: eventInitDict.clipboardData,
+			},
+		) as any as ClipboardEvent;
+	}
 }
 
 type DataKind = "string" | "file";
 
 class DataTransferItem {
-  kind: DataKind;
-  type: string;
-  data: string | Blob;
+	kind: DataKind;
+	type: string;
+	data: string | Blob;
 
-  constructor(kind: DataKind, type: string, data: string | Blob) {
-    this.kind = kind;
-    this.type = type;
-    this.data = data;
-  }
+	constructor(kind: DataKind, type: string, data: string | Blob) {
+		this.kind = kind;
+		this.type = type;
+		this.data = data;
+	}
 
-  getAsString(callback: (data: string) => void): void {
-    if (this.kind === "string") {
-      callback(this.data as string);
-    }
-  }
+	getAsString(callback: (data: string) => void): void {
+		if (this.kind === "string") {
+			callback(this.data as string);
+		}
+	}
 
-  getAsFile(): File | null {
-    if (this.kind === "file" && this.data instanceof File) {
-      return this.data;
-    }
-    return null;
-  }
+	getAsFile(): File | null {
+		if (this.kind === "file" && this.data instanceof File) {
+			return this.data;
+		}
+		return null;
+	}
 }
 
 class DataTransferList {
-  items: DataTransferItem[] = [];
+	items: DataTransferItem[] = [];
 
-  add(data: string | File, type: string = ""): void {
-    if (typeof data === "string") {
-      this.items.push(new DataTransferItem("string", type, data));
-    } else if (data instanceof File) {
-      this.items.push(new DataTransferItem("file", type, data));
-    }
-  }
+	add(data: string | File, type: string = ""): void {
+		if (typeof data === "string") {
+			this.items.push(new DataTransferItem("string", type, data));
+		} else if (data instanceof File) {
+			this.items.push(new DataTransferItem("file", type, data));
+		}
+	}
 
-  clear(): void {
-    this.items = [];
-  }
+	clear(): void {
+		this.items = [];
+	}
 }
 
 class DataTransfer {
-  public items: DataTransferList = new DataTransferList();
-  private _types: Record<string, string> = {};
+	public items: DataTransferList = new DataTransferList();
+	private _types: Record<string, string> = {};
 
-  get files() {
-    return this.items.items
-      .filter((item) => item.kind === "file")
-      .map((item) => item.getAsFile()!);
-  }
+	get files() {
+		return this.items.items.filter((item) => item.kind === "file").map((item) => item.getAsFile()!);
+	}
 
-  add(data: string | File, type: string = ""): void {
-    this.items.add(data, type);
-  }
+	add(data: string | File, type: string = ""): void {
+		this.items.add(data, type);
+	}
 
-  setData(type: string, value: string) {
-    this._types[type] = value;
-  }
+	setData(type: string, value: string) {
+		this._types[type] = value;
+	}
 
-  getData(type: string) {
-    return this._types[type] || "";
-  }
+	getData(type: string) {
+		return this._types[type] || "";
+	}
 }
 
 export const testPolyfills = {
-  ClipboardEvent,
-  DataTransfer,
-  DataTransferItem,
+	ClipboardEvent,
+	DataTransfer,
+	DataTransferItem,
 };

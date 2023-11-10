@@ -1,115 +1,107 @@
 import { ExcalidrawElement } from "../../src/element/types";
 import { AppState } from "../../src/types";
-import {
-  clearAppStateForLocalStorage,
-  getDefaultAppState,
-} from "../../src/appState";
+import { clearAppStateForLocalStorage, getDefaultAppState } from "../../src/appState";
 import { clearElementsForLocalStorage } from "../../src/element";
 import { STORAGE_KEYS } from "../app_constants";
 import { ImportedDataState } from "../../src/data/types";
 
 export const saveUsernameToLocalStorage = (username: string) => {
-  try {
-    localStorage.setItem(
-      STORAGE_KEYS.LOCAL_STORAGE_COLLAB,
-      JSON.stringify({ username }),
-    );
-  } catch (error: any) {
-    // Unable to access window.localStorage
-    console.error(error);
-  }
+	try {
+		localStorage.setItem(STORAGE_KEYS.LOCAL_STORAGE_COLLAB, JSON.stringify({ username }));
+	} catch (error: any) {
+		// Unable to access window.localStorage
+		console.error(error);
+	}
 };
 
 export const importUsernameFromLocalStorage = (): string | null => {
-  try {
-    const data = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_COLLAB);
-    if (data) {
-      return JSON.parse(data).username;
-    }
-  } catch (error: any) {
-    // Unable to access localStorage
-    console.error(error);
-  }
+	try {
+		const data = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_COLLAB);
+		if (data) {
+			return JSON.parse(data).username;
+		}
+	} catch (error: any) {
+		// Unable to access localStorage
+		console.error(error);
+	}
 
-  return null;
+	return null;
 };
 
 export const importFromLocalStorage = () => {
-  let savedElements = null;
-  let savedState = null;
+	let savedElements = null;
+	let savedState = null;
 
-  try {
-    savedElements = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);
-    savedState = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_APP_STATE);
-  } catch (error: any) {
-    // Unable to access localStorage
-    console.error(error);
-  }
+	try {
+		savedElements = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);
+		savedState = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_APP_STATE);
+	} catch (error: any) {
+		// Unable to access localStorage
+		console.error(error);
+	}
 
-  let elements: ExcalidrawElement[] = [];
-  if (savedElements) {
-    try {
-      elements = clearElementsForLocalStorage(JSON.parse(savedElements));
-    } catch (error: any) {
-      console.error(error);
-      // Do nothing because elements array is already empty
-    }
-  }
+	let elements: ExcalidrawElement[] = [];
+	if (savedElements) {
+		try {
+			elements = clearElementsForLocalStorage(JSON.parse(savedElements));
+		} catch (error: any) {
+			console.error(error);
+			// Do nothing because elements array is already empty
+		}
+	}
 
-  let appState = null;
-  if (savedState) {
-    try {
-      appState = {
-        ...getDefaultAppState(),
-        ...clearAppStateForLocalStorage(
-          JSON.parse(savedState) as Partial<AppState>,
-        ),
-      };
-    } catch (error: any) {
-      console.error(error);
-      // Do nothing because appState is already null
-    }
-  }
-  return { elements, appState };
+	let appState = null;
+	if (savedState) {
+		try {
+			appState = {
+				...getDefaultAppState(),
+				...clearAppStateForLocalStorage(JSON.parse(savedState) as Partial<AppState>),
+			};
+		} catch (error: any) {
+			console.error(error);
+			// Do nothing because appState is already null
+		}
+	}
+	return { elements, appState };
 };
 
 export const getElementsStorageSize = () => {
-  try {
-    const elements = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);
-    const elementsSize = elements?.length || 0;
-    return elementsSize;
-  } catch (error: any) {
-    console.error(error);
-    return 0;
-  }
+	try {
+		const elements = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_ELEMENTS);
+		const elementsSize = elements?.length || 0;
+		return elementsSize;
+	} catch (error: any) {
+		console.error(error);
+		return 0;
+	}
 };
 
 export const getTotalStorageSize = () => {
-  try {
-    const appState = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_APP_STATE);
-    const collab = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_COLLAB);
-    const library = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_LIBRARY);
+	try {
+		const appState = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_APP_STATE);
+		const collab = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_COLLAB);
+		const library = localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_LIBRARY);
 
-    const appStateSize = appState?.length || 0;
-    const collabSize = collab?.length || 0;
-    const librarySize = library?.length || 0;
+		const appStateSize = appState?.length || 0;
+		const collabSize = collab?.length || 0;
+		const librarySize = library?.length || 0;
 
-    return appStateSize + collabSize + librarySize + getElementsStorageSize();
-  } catch (error: any) {
-    console.error(error);
-    return 0;
-  }
+		return appStateSize + collabSize + librarySize + getElementsStorageSize();
+	} catch (error: any) {
+		console.error(error);
+		return 0;
+	}
 };
 
 export const getLibraryItemsFromStorage = () => {
-  try {
-    const libraryItems: ImportedDataState["libraryItems"] = JSON.parse(
-      localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_LIBRARY) as string,
-    );
+	try {
+		const libraryItems: ImportedDataState["libraryItems"] = JSON.parse(
+			localStorage.getItem(STORAGE_KEYS.LOCAL_STORAGE_LIBRARY) as string,
+		);
 
-    return libraryItems || [];
-  } catch (error) {
-    console.error(error);
-    return [];
-  }
+		return libraryItems || [];
+	} catch (error) {
+		console.error(error);
+		return [];
+	}
 };

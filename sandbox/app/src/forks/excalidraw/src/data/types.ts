@@ -1,20 +1,15 @@
 import { ExcalidrawElement } from "../element/types";
-import {
-  AppState,
-  BinaryFiles,
-  LibraryItems,
-  LibraryItems_anyVersion,
-} from "../types";
+import { AppState, BinaryFiles, LibraryItems, LibraryItems_anyVersion } from "../types";
 import type { cleanAppStateForExport } from "../appState";
 import { VERSIONS } from "../constants";
 
 export interface ExportedDataState {
-  type: string;
-  version: number;
-  source: string;
-  elements: readonly ExcalidrawElement[];
-  appState: ReturnType<typeof cleanAppStateForExport>;
-  files: BinaryFiles | undefined;
+	type: string;
+	version: number;
+	source: string;
+	elements: readonly ExcalidrawElement[];
+	appState: ReturnType<typeof cleanAppStateForExport>;
+	files: BinaryFiles | undefined;
 }
 
 /**
@@ -25,35 +20,35 @@ export interface ExportedDataState {
  * Don't consume on its own.
  */
 export type LegacyAppState = {
-  /** @deprecated #6213 TODO remove 23-06-01 */
-  isSidebarDocked: [boolean, "defaultSidebarDockedPreference"];
+	/** @deprecated #6213 TODO remove 23-06-01 */
+	isSidebarDocked: [boolean, "defaultSidebarDockedPreference"];
 };
 
 export interface ImportedDataState {
-  type?: string;
-  version?: number;
-  source?: string;
-  elements?: readonly ExcalidrawElement[] | null;
-  appState?: Readonly<
-    Partial<
-      AppState & {
-        [T in keyof LegacyAppState]: LegacyAppState[T][0];
-      }
-    >
-  > | null;
-  scrollToContent?: boolean;
-  libraryItems?: LibraryItems_anyVersion;
-  files?: BinaryFiles;
+	type?: string;
+	version?: number;
+	source?: string;
+	elements?: readonly ExcalidrawElement[] | null;
+	appState?: Readonly<
+		Partial<
+			AppState & {
+				[T in keyof LegacyAppState]: LegacyAppState[T][0];
+			}
+		>
+	> | null;
+	scrollToContent?: boolean;
+	libraryItems?: LibraryItems_anyVersion;
+	files?: BinaryFiles;
 }
 
 export interface ExportedLibraryData {
-  type: string;
-  version: typeof VERSIONS.excalidrawLibrary;
-  source: string;
-  libraryItems: LibraryItems;
+	type: string;
+	version: typeof VERSIONS.excalidrawLibrary;
+	source: string;
+	libraryItems: LibraryItems;
 }
 
 export interface ImportedLibraryData extends Partial<ExportedLibraryData> {
-  /** @deprecated v1 */
-  library?: LibraryItems;
+	/** @deprecated v1 */
+	library?: LibraryItems;
 }

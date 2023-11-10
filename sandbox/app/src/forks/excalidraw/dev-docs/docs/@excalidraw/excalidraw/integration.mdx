@@ -19,14 +19,14 @@ For example, we're passing a `theme` prop to it based on the current color theme
 
 ```jsx live
 function App() {
-  return (
-    <>
-      <h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
-      <div style={{ height: "500px" }}>
-        <Excalidraw />
-      </div>
-    </>
-  );
+	return (
+		<>
+			<h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
+			<div style={{ height: "500px" }}>
+				<Excalidraw />
+			</div>
+		</>
+	);
 }
 ```
 
@@ -41,13 +41,11 @@ Here are two ways on how you can render **Excalidraw** on **Next.js**.
 ```jsx showLineNumbers
 import { useState, useEffect } from "react";
 export default function App() {
-  const [Excalidraw, setExcalidraw] = useState(null);
-  useEffect(() => {
-    import("@excalidraw/excalidraw").then((comp) =>
-      setExcalidraw(comp.Excalidraw),
-    );
-  }, []);
-  return <>{Excalidraw && <Excalidraw />}</>;
+	const [Excalidraw, setExcalidraw] = useState(null);
+	useEffect(() => {
+		import("@excalidraw/excalidraw").then((comp) => setExcalidraw(comp.Excalidraw));
+	}, []);
+	return <>{Excalidraw && <Excalidraw />}</>;
 }
 ```
 
@@ -59,14 +57,11 @@ Since Excalidraw doesn't server side rendering so you can also use `dynamic impo
 
 ```jsx showLineNumbers
 import dynamic from "next/dynamic";
-const Excalidraw = dynamic(
-  async () => (await import("@excalidraw/excalidraw")).Excalidraw,
-  {
-    ssr: false,
-  },
-);
+const Excalidraw = dynamic(async () => (await import("@excalidraw/excalidraw")).Excalidraw, {
+	ssr: false,
+});
 export default function App() {
-  return <Excalidraw />;
+	return <Excalidraw />;
 }
 ```
 
@@ -82,8 +77,8 @@ For development use :point_down:
 
 ```js
 <script
-  type="text/javascript"
-  src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.development.js"
+	type="text/javascript"
+	src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.development.js"
 ></script>
 ```
 
@@ -91,8 +86,8 @@ For production use :point_down:
 
 ```js
 <script
-  type="text/javascript"
-  src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.production.min.js"
+	type="text/javascript"
+	src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.production.min.js"
 ></script>
 ```
 
@@ -105,27 +100,27 @@ import TabItem from "@theme/TabItem";
   <TabItem value="html" label="html">
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <title>Excalidraw in browser</title>
-    <meta charset="UTF-8" />
-    <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+	<head>
+		<title>Excalidraw in browser</title>
+		<meta charset="UTF-8" />
+		<script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+		<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
 
-    <script
-      type="text/javascript"
-      src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.development.js"
-    ></script>
-  </head>
+		<script
+			type="text/javascript"
+			src="https://unpkg.com/@excalidraw/excalidraw/dist/excalidraw.development.js"
+		></script>
+	</head>
 
-  <body>
-    <div class="container">
-      <h1>Excalidraw Embed Example</h1>
-      <div id="app"></div>
-    </div>
-    <script type="text/javascript" src="src/index.js"></script>
-  </body>
+	<body>
+		<div class="container">
+			<h1>Excalidraw Embed Example</h1>
+			<div id="app"></div>
+		</div>
+		<script type="text/javascript" src="src/index.js"></script>
+	</body>
 </html>
 ```
 
@@ -134,17 +129,17 @@ import TabItem from "@theme/TabItem";
 
 ```js showLineNumbers
 const App = () => {
-  return React.createElement(
-    React.Fragment,
-    null,
-    React.createElement(
-      "div",
-      {
-        style: { height: "500px" },
-      },
-      React.createElement(ExcalidrawLib.Excalidraw),
-    ),
-  );
+	return React.createElement(
+		React.Fragment,
+		null,
+		React.createElement(
+			"div",
+			{
+				style: { height: "500px" },
+			},
+			React.createElement(ExcalidrawLib.Excalidraw),
+		),
+	);
 };
 
 const excalidrawWrapper = document.getElementById("app");

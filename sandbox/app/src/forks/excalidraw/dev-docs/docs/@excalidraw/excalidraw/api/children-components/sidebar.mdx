@@ -4,15 +4,15 @@ The editor comes with a default sidebar on the right in LTR (Left to Right) mode
 
 ## Props
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `name` | `string` | Yes | Sidebar name that uniquely identifies it. |
-| `children` | `React.ReactNode` | Yes | Content you want to render inside the sidebar. |
-| `onStateChange` | `(state: AppState["openSidebar"]) => void` | No | Invoked on open/close or tab change. No need to act on this event, as the editor manages the sidebar open state on its own. |
-| `onDock` | `(docked: boolean) => void` | No | Invoked when the user toggles the `dock` button. Passed the current docked state. |
-| `docked` | `boolean` | No | Indicates whether the sidebar is `docked`. By default, the sidebar is `undocked`. If passed, the docking becomes controlled. |
-| `className` | `string` | No |  |
-| `style` | `React.CSSProperties` | No |  |
+| Prop            | Type                                       | Required | Description                                                                                                                  |
+| --------------- | ------------------------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `name`          | `string`                                   | Yes      | Sidebar name that uniquely identifies it.                                                                                    |
+| `children`      | `React.ReactNode`                          | Yes      | Content you want to render inside the sidebar.                                                                               |
+| `onStateChange` | `(state: AppState["openSidebar"]) => void` | No       | Invoked on open/close or tab change. No need to act on this event, as the editor manages the sidebar open state on its own.  |
+| `onDock`        | `(docked: boolean) => void`                | No       | Invoked when the user toggles the `dock` button. Passed the current docked state.                                            |
+| `docked`        | `boolean`                                  | No       | Indicates whether the sidebar is `docked`. By default, the sidebar is `undocked`. If passed, the docking becomes controlled. |
+| `className`     | `string`                                   | No       |                                                                                                                              |
+| `style`         | `React.CSSProperties`                      | No       |                                                                                                                              |
 
 At minimum, each sidebar needs to have a unique `name` prop, and render some content inside it, which can be either composed from the exported sidebar sub-components, or custom elements.
 
@@ -24,10 +24,10 @@ To make your sidebar user-dockable, you need to supply `props.docked` (current d
 
 ## Sidebar.Header
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `children` | `React.ReactNode` | No | Content you want to render inside the sidebar header next to the `close` / `dock` buttons. |
-| `className` | `string` | No |  |
+| Prop        | Type              | Required | Description                                                                                |
+| ----------- | ----------------- | -------- | ------------------------------------------------------------------------------------------ |
+| `children`  | `React.ReactNode` | No       | Content you want to render inside the sidebar header next to the `close` / `dock` buttons. |
+| `className` | `string`          | No       |                                                                                            |
 
 Renders a sidebar header which contains a close button, and a dock button (when applicable). You can also render custom content in addition.
 
@@ -52,33 +52,33 @@ Content of a given sidebar tab. It must be rendered inside `<Sidebar.Tabs>`.
 
 ## Sidebar.TabTriggers
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `children` | `React.ReactNode` | No | Container for individual tab triggers. |
+| Prop       | Type              | Required | Description                            |
+| ---------- | ----------------- | -------- | -------------------------------------- |
+| `children` | `React.ReactNode` | No       | Container for individual tab triggers. |
 
 Container component for tab trigger buttons to switch between tabs.
 
 ## Sidebar.TabTrigger
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `tab` | `string` | Yes | Tab name to toggle. |
-| `children` | `React.ReactNode` | No | Tab trigger content, such as a label. |
+| Prop       | Type              | Required | Description                           |
+| ---------- | ----------------- | -------- | ------------------------------------- |
+| `tab`      | `string`          | Yes      | Tab name to toggle.                   |
+| `children` | `React.ReactNode` | No       | Tab trigger content, such as a label. |
 
 A given tab trigger button that switches to a given sidebar tab. It must be rendered inside `<Sidebar.TabTriggers>`.
 
 ## Sidebar.Trigger
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| `name` | `string` | Yes | Sidebar name the trigger will control. |
-| `tab` | `string` | No | Optional tab to open. |
-| `onToggle` | `(open: boolean) => void` | No | Callback invoked on toggle. |
-| `title` | `string` | No | A11y title. |
-| `children` | `React.ReactNode` | No | Content (usually label) you want to render inside the button. |
-| `icon` | `JSX.Element` | No | Trigger icon if any. |
-| `className` | `string` | No |  |
-| `style` | `React.CSSProperties` | No |  |
+| Prop        | Type                      | Required | Description                                                   |
+| ----------- | ------------------------- | -------- | ------------------------------------------------------------- |
+| `name`      | `string`                  | Yes      | Sidebar name the trigger will control.                        |
+| `tab`       | `string`                  | No       | Optional tab to open.                                         |
+| `onToggle`  | `(open: boolean) => void` | No       | Callback invoked on toggle.                                   |
+| `title`     | `string`                  | No       | A11y title.                                                   |
+| `children`  | `React.ReactNode`         | No       | Content (usually label) you want to render inside the button. |
+| `icon`      | `JSX.Element`             | No       | Trigger icon if any.                                          |
+| `className` | `string`                  | No       |                                                               |
+| `style`     | `React.CSSProperties`     | No       |                                                               |
 
 You can use the [`ref.toggleSidebar({ name: "custom" })`](/docs/@excalidraw/excalidraw/api/props/ref#toggleSidebar) api to control the sidebar, but we export a trigger button to make UI use cases easier.
 
@@ -86,44 +86,44 @@ You can use the [`ref.toggleSidebar({ name: "custom" })`](/docs/@excalidraw/exca
 
 ```tsx live
 function App() {
-  const [docked, setDocked] = useState(false);
+	const [docked, setDocked] = useState(false);
 
-  return (
-    <div style={{ height: "580px" }}>
-      <Excalidraw
-        UIOptions={{
-          // this effectively makes the sidebar dockable on any screen size,
-          // ignoring if it fits or not
-          dockedSidebarBreakpoint: 0,
-        }}
-      >
-        <Sidebar name="custom" docked={docked} onDock={setDocked}>
-          <Sidebar.Header />
-          <Sidebar.Tabs style={{ padding: "0.5rem" }}>
-            <Sidebar.Tab tab="one">Tab one!</Sidebar.Tab>
-            <Sidebar.Tab tab="two">Tab two!</Sidebar.Tab>
-            <Sidebar.TabTriggers>
-              <Sidebar.TabTrigger tab="one">One</Sidebar.TabTrigger>
-              <Sidebar.TabTrigger tab="two">Two</Sidebar.TabTrigger>
-            </Sidebar.TabTriggers>
-          </Sidebar.Tabs>
-        </Sidebar>
+	return (
+		<div style={{ height: "580px" }}>
+			<Excalidraw
+				UIOptions={{
+					// this effectively makes the sidebar dockable on any screen size,
+					// ignoring if it fits or not
+					dockedSidebarBreakpoint: 0,
+				}}
+			>
+				<Sidebar name="custom" docked={docked} onDock={setDocked}>
+					<Sidebar.Header />
+					<Sidebar.Tabs style={{ padding: "0.5rem" }}>
+						<Sidebar.Tab tab="one">Tab one!</Sidebar.Tab>
+						<Sidebar.Tab tab="two">Tab two!</Sidebar.Tab>
+						<Sidebar.TabTriggers>
+							<Sidebar.TabTrigger tab="one">One</Sidebar.TabTrigger>
+							<Sidebar.TabTrigger tab="two">Two</Sidebar.TabTrigger>
+						</Sidebar.TabTriggers>
+					</Sidebar.Tabs>
+				</Sidebar>
 
-        <Footer>
-          <Sidebar.Trigger
-            name="custom"
-            tab="one"
-            style={{
-              marginLeft: "0.5rem",
-              background: "#70b1ec",
-              color: "white",
-            }}
-          >
-            Toggle Custom Sidebar
-          </Sidebar.Trigger>
-        </Footer>
-      </Excalidraw>
-    </div>
-  );
+				<Footer>
+					<Sidebar.Trigger
+						name="custom"
+						tab="one"
+						style={{
+							marginLeft: "0.5rem",
+							background: "#70b1ec",
+							color: "white",
+						}}
+					>
+						Toggle Custom Sidebar
+					</Sidebar.Trigger>
+				</Footer>
+			</Excalidraw>
+		</div>
+	);
 }
 ```

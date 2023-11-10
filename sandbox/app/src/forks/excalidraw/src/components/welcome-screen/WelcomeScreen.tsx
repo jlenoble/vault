@@ -4,18 +4,18 @@ import { MenuHint, ToolbarHint, HelpHint } from "./WelcomeScreen.Hints";
 import "./WelcomeScreen.scss";
 
 const WelcomeScreen = (props: { children?: React.ReactNode }) => {
-  return (
-    <>
-      {props.children || (
-        <>
-          <Center />
-          <MenuHint />
-          <ToolbarHint />
-          <HelpHint />
-        </>
-      )}
-    </>
-  );
+	return (
+		<>
+			{props.children || (
+				<>
+					<Center />
+					<MenuHint />
+					<ToolbarHint />
+					<HelpHint />
+				</>
+			)}
+		</>
+	);
 };
 
 WelcomeScreen.displayName = "WelcomeScreen";

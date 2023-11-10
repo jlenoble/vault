@@ -11,11 +11,11 @@ The [`ExcalidrawElementSkeleton`](https://github.com/excalidraw/excalidraw/blob/
 **_Signature_**
 
 <pre>
-  convertToExcalidrawElements(elements:{" "}
-  <a href="https://github.com/excalidraw/excalidraw/blob/master/src/data/transform.ts#L133">
-    ExcalidrawElementSkeleton
-  </a>
-  )
+	convertToExcalidrawElements(elements:{" "}
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/data/transform.ts#L133">
+		ExcalidrawElementSkeleton
+	</a>
+	)
 </pre>
 
 **_How to use_**
@@ -30,40 +30,40 @@ This function converts the Excalidraw Element Skeleton to excalidraw elements wh
 
 ### Rectangle, Ellipse, and Diamond
 
-To create these shapes you need to pass its `type` and `x` and `y` coordinates for position. The rest of the attributes are optional_.
+To create these shapes you need to pass its `type` and `x` and `y` coordinates for position. The rest of the attributes are optional\_.
 
 For the Skeleton API to work, `convertToExcalidrawElements` needs to be called before passing it to Excalidraw Component via initialData, updateScene or any such API.
 
 ```jsx live
 function App() {
-  const elements = convertToExcalidrawElements([
-    {
-      type: "rectangle",
-      x: 100,
-      y: 250,
-    },
-    {
-      type: "ellipse",
-      x: 250,
-      y: 250,
-    },
-    {
-      type: "diamond",
-      x: 380,
-      y: 250,
-    },
-  ]);
-  return (
-    <div style={{ height: "500px" }}>
-      <Excalidraw
-        initialData={{
-          elements,
-          appState: { zenModeEnabled: true, viewBackgroundColor: "#a5d8ff" },
-          scrollToContent: true,
-        }}
-      />
-    </div>
-  );
+	const elements = convertToExcalidrawElements([
+		{
+			type: "rectangle",
+			x: 100,
+			y: 250,
+		},
+		{
+			type: "ellipse",
+			x: 250,
+			y: 250,
+		},
+		{
+			type: "diamond",
+			x: 380,
+			y: 250,
+		},
+	]);
+	return (
+		<div style={{ height: "500px" }}>
+			<Excalidraw
+				initialData={{
+					elements,
+					appState: { zenModeEnabled: true, viewBackgroundColor: "#a5d8ff" },
+					scrollToContent: true,
+				}}
+			/>
+		</div>
+	);
 }
 ```
 
@@ -77,38 +77,38 @@ You can copy the below test examples and replace the elements in the live editor
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "rectangle",
-    x: 50,
-    y: 250,
-    width: 200,
-    height: 100,
-    backgroundColor: "#c0eb75",
-    strokeWidth: 2,
-  },
-  {
-    type: "ellipse",
-    x: 300,
-    y: 250,
-    width: 200,
-    height: 100,
-    backgroundColor: "#ffc9c9",
-    strokeStyle: "dotted",
-    fillStyle: "solid",
-    strokeWidth: 2,
-  },
-  {
-    type: "diamond",
-    x: 550,
-    y: 250,
-    width: 200,
-    height: 100,
-    backgroundColor: "#a5d8ff",
-    strokeColor: "#1971c2",
-    strokeStyle: "dashed",
-    fillStyle: "cross-hatch",
-    strokeWidth: 2,
-  },
+	{
+		type: "rectangle",
+		x: 50,
+		y: 250,
+		width: 200,
+		height: 100,
+		backgroundColor: "#c0eb75",
+		strokeWidth: 2,
+	},
+	{
+		type: "ellipse",
+		x: 300,
+		y: 250,
+		width: 200,
+		height: 100,
+		backgroundColor: "#ffc9c9",
+		strokeStyle: "dotted",
+		fillStyle: "solid",
+		strokeWidth: 2,
+	},
+	{
+		type: "diamond",
+		x: 550,
+		y: 250,
+		width: 200,
+		height: 100,
+		backgroundColor: "#a5d8ff",
+		strokeColor: "#1971c2",
+		strokeStyle: "dashed",
+		fillStyle: "cross-hatch",
+		strokeWidth: 2,
+	},
 ]);
 ```
 
@@ -120,20 +120,20 @@ The `type`, `x`, `y` and `text` properties are required to create a text element
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "text",
-    x: 100,
-    y: 100,
-    text: "HELLO WORLD!",
-  },
-  {
-    type: "text",
-    x: 100,
-    y: 150,
-    text: "STYLED HELLO WORLD!",
-    fontSize: 20,
-    strokeColor: "#5f3dc4",
-  },
+	{
+		type: "text",
+		x: 100,
+		y: 100,
+		text: "HELLO WORLD!",
+	},
+	{
+		type: "text",
+		x: 100,
+		y: 150,
+		text: "STYLED HELLO WORLD!",
+		fontSize: 20,
+		strokeColor: "#5f3dc4",
+	},
 ]);
 ```
 
@@ -145,16 +145,16 @@ The `type`, `x`, and `y` properties are required, rest of the attributes are opt
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "arrow",
-    x: 100,
-    y: 20,
-  },
-  {
-    type: "line",
-    x: 100,
-    y: 60,
-  },
+	{
+		type: "arrow",
+		x: 100,
+		y: 20,
+	},
+	{
+		type: "line",
+		x: 100,
+		y: 60,
+	},
 ]);
 ```
 
@@ -164,23 +164,23 @@ convertToExcalidrawElements([
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "arrow",
-    x: 450,
-    y: 20,
-    startArrowhead: "dot",
-    endArrowhead: "triangle",
-    strokeColor: "#1971c2",
-    strokeWidth: 2,
-  },
-  {
-    type: "line",
-    x: 450,
-    y: 60,
-    strokeColor: "#2f9e44",
-    strokeWidth: 2,
-    strokeStyle: "dotted",
-  },
+	{
+		type: "arrow",
+		x: 450,
+		y: 20,
+		startArrowhead: "dot",
+		endArrowhead: "triangle",
+		strokeColor: "#1971c2",
+		strokeWidth: 2,
+	},
+	{
+		type: "line",
+		x: 450,
+		y: 60,
+		strokeColor: "#2f9e44",
+		strokeWidth: 2,
+		strokeStyle: "dotted",
+	},
 ]);
 ```
 
@@ -194,30 +194,30 @@ If you don't provide the dimensions of container, we calculate it based of the l
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "rectangle",
-    x: 300,
-    y: 290,
-    label: {
-      text: "RECTANGLE TEXT CONTAINER",
-    },
-  },
-  {
-    type: "ellipse",
-    x: 500,
-    y: 100,
-    label: {
-      text: "ELLIPSE\n TEXT CONTAINER",
-    },
-  },
-  {
-    type: "diamond",
-    x: 100,
-    y: 100,
-    label: {
-      text: "DIAMOND\nTEXT CONTAINER",
-    },
-  },
+	{
+		type: "rectangle",
+		x: 300,
+		y: 290,
+		label: {
+			text: "RECTANGLE TEXT CONTAINER",
+		},
+	},
+	{
+		type: "ellipse",
+		x: 500,
+		y: 100,
+		label: {
+			text: "ELLIPSE\n TEXT CONTAINER",
+		},
+	},
+	{
+		type: "diamond",
+		x: 100,
+		y: 100,
+		label: {
+			text: "DIAMOND\nTEXT CONTAINER",
+		},
+	},
 ]);
 ```
 
@@ -227,44 +227,44 @@ convertToExcalidrawElements([
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "diamond",
-    x: -120,
-    y: 100,
-    width: 270,
-    backgroundColor: "#fff3bf",
-    strokeWidth: 2,
-    label: {
-      text: "STYLED DIAMOND TEXT CONTAINER",
-      strokeColor: "#099268",
-      fontSize: 20,
-    },
-  },
-  {
-    type: "rectangle",
-    x: 180,
-    y: 150,
-    width: 200,
-    strokeColor: "#c2255c",
-    label: {
-      text: "TOP LEFT ALIGNED RECTANGLE TEXT CONTAINER",
-      textAlign: "left",
-      verticalAlign: "top",
-      fontSize: 20,
-    },
-  },
-  {
-    type: "ellipse",
-    x: 400,
-    y: 130,
-    strokeColor: "#f08c00",
-    backgroundColor: "#ffec99",
-    width: 200,
-    label: {
-      text: "STYLED ELLIPSE TEXT CONTAINER",
-      strokeColor: "#c2255c",
-    },
-  },
+	{
+		type: "diamond",
+		x: -120,
+		y: 100,
+		width: 270,
+		backgroundColor: "#fff3bf",
+		strokeWidth: 2,
+		label: {
+			text: "STYLED DIAMOND TEXT CONTAINER",
+			strokeColor: "#099268",
+			fontSize: 20,
+		},
+	},
+	{
+		type: "rectangle",
+		x: 180,
+		y: 150,
+		width: 200,
+		strokeColor: "#c2255c",
+		label: {
+			text: "TOP LEFT ALIGNED RECTANGLE TEXT CONTAINER",
+			textAlign: "left",
+			verticalAlign: "top",
+			fontSize: 20,
+		},
+	},
+	{
+		type: "ellipse",
+		x: 400,
+		y: 130,
+		strokeColor: "#f08c00",
+		backgroundColor: "#ffec99",
+		width: 200,
+		label: {
+			text: "STYLED ELLIPSE TEXT CONTAINER",
+			strokeColor: "#c2255c",
+		},
+	},
 ]);
 ```
 
@@ -276,45 +276,45 @@ Similar to Text Containers, you can create labelled arrows as well.
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "arrow",
-    x: 100,
-    y: 100,
-    label: {
-      text: "LABELED ARROW",
-    },
-  },
-  {
-    type: "arrow",
-    x: 100,
-    y: 200,
-    label: {
-      text: "STYLED LABELED ARROW",
-      strokeColor: "#099268",
-      fontSize: 20,
-    },
-  },
-  {
-    type: "arrow",
-    x: 100,
-    y: 300,
-    strokeColor: "#1098ad",
-    strokeWidth: 2,
-    label: {
-      text: "ANOTHER STYLED LABELLED ARROW",
-    },
-  },
-  {
-    type: "arrow",
-    x: 100,
-    y: 400,
-    strokeColor: "#1098ad",
-    strokeWidth: 2,
-    label: {
-      text: "ANOTHER STYLED LABELLED ARROW",
-      strokeColor: "#099268",
-    },
-  },
+	{
+		type: "arrow",
+		x: 100,
+		y: 100,
+		label: {
+			text: "LABELED ARROW",
+		},
+	},
+	{
+		type: "arrow",
+		x: 100,
+		y: 200,
+		label: {
+			text: "STYLED LABELED ARROW",
+			strokeColor: "#099268",
+			fontSize: 20,
+		},
+	},
+	{
+		type: "arrow",
+		x: 100,
+		y: 300,
+		strokeColor: "#1098ad",
+		strokeWidth: 2,
+		label: {
+			text: "ANOTHER STYLED LABELLED ARROW",
+		},
+	},
+	{
+		type: "arrow",
+		x: 100,
+		y: 400,
+		strokeColor: "#1098ad",
+		strokeWidth: 2,
+		label: {
+			text: "ANOTHER STYLED LABELLED ARROW",
+			strokeColor: "#099268",
+		},
+	},
 ]);
 ```
 
@@ -326,20 +326,20 @@ To bind arrow to a shape you need to specify its [`start`](https://github.com/ex
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "arrow",
-    x: 255,
-    y: 239,
-    label: {
-      text: "HELLO WORLD!!",
-    },
-    start: {
-      type: "rectangle",
-    },
-    end: {
-      type: "ellipse",
-    },
-  },
+	{
+		type: "arrow",
+		x: 255,
+		y: 239,
+		label: {
+			text: "HELLO WORLD!!",
+		},
+		start: {
+			type: "rectangle",
+		},
+		end: {
+			type: "ellipse",
+		},
+	},
 ]);
 ```
 
@@ -349,22 +349,22 @@ When position for `start` and `end ` properties are not specified, we compute it
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "arrow",
-    x: 255,
-    y: 239,
-    label: {
-      text: "HELLO WORLD!!",
-    },
-    start: {
-      type: "text",
-      text: "HEYYYYY",
-    },
-    end: {
-      type: "text",
-      text: "WHATS UP ?",
-    },
-  },
+	{
+		type: "arrow",
+		x: 255,
+		y: 239,
+		label: {
+			text: "HELLO WORLD!!",
+		},
+		start: {
+			type: "text",
+			text: "HEYYYYY",
+		},
+		end: {
+			type: "text",
+			text: "WHATS UP ?",
+		},
+	},
 ]);
 ```
 
@@ -376,53 +376,53 @@ Useful when you want to bind multiple arrows to one diagram / use some existing 
 
 ```js
 convertToExcalidrawElements([
-  {
-    type: "ellipse",
-    id: "ellipse-1",
-    strokeColor: "#66a80f",
-    x: 390,
-    y: 356,
-    width: 150,
-    height: 150,
-    backgroundColor: "#d8f5a2",
-  },
-  {
-    type: "diamond",
-    id: "diamond-1",
-    strokeColor: "#9c36b5",
-    width: 100,
-    x: -30,
-    y: 380,
-  },
-  {
-    type: "arrow",
-    x: 100,
-    y: 440,
-    width: 295,
-    height: 35,
-    strokeColor: "#1864ab",
-    start: {
-      type: "rectangle",
-      width: 150,
-      height: 150,
-    },
-    end: {
-      id: "ellipse-1",
-    },
-  },
-  {
-    type: "arrow",
-    x: 60,
-    y: 420,
-    width: 330,
-    strokeColor: "#e67700",
-    start: {
-      id: "diamond-1",
-    },
-    end: {
-      id: "ellipse-1",
-    },
-  },
+	{
+		type: "ellipse",
+		id: "ellipse-1",
+		strokeColor: "#66a80f",
+		x: 390,
+		y: 356,
+		width: 150,
+		height: 150,
+		backgroundColor: "#d8f5a2",
+	},
+	{
+		type: "diamond",
+		id: "diamond-1",
+		strokeColor: "#9c36b5",
+		width: 100,
+		x: -30,
+		y: 380,
+	},
+	{
+		type: "arrow",
+		x: 100,
+		y: 440,
+		width: 295,
+		height: 35,
+		strokeColor: "#1864ab",
+		start: {
+			type: "rectangle",
+			width: 150,
+			height: 150,
+		},
+		end: {
+			id: "ellipse-1",
+		},
+	},
+	{
+		type: "arrow",
+		x: 60,
+		y: 420,
+		width: 330,
+		strokeColor: "#e67700",
+		start: {
+			id: "diamond-1",
+		},
+		end: {
+			id: "ellipse-1",
+		},
+	},
 ]);
 ```
 

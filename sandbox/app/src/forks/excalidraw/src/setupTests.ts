@@ -12,9 +12,9 @@ require("fake-indexeddb/auto");
 polyfill();
 
 vi.mock("nanoid", () => {
-  return {
-    nanoid: vi.fn(() => "test-id"),
-  };
+	return {
+		nanoid: vi.fn(() => "test-id"),
+	};
 });
 // ReactDOM is located inside index.tsx file
 // as a result, we need a place for it to render into

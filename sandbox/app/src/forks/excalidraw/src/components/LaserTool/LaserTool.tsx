@@ -3,25 +3,25 @@ import { LaserPathManager } from "./LaserPathManager";
 import "./LaserToolOverlay.scss";
 
 type LaserToolOverlayProps = {
-  manager: LaserPathManager;
+	manager: LaserPathManager;
 };
 
 export const LaserToolOverlay = ({ manager }: LaserToolOverlayProps) => {
-  const svgRef = useRef<SVGSVGElement | null>(null);
+	const svgRef = useRef<SVGSVGElement | null>(null);
 
-  useEffect(() => {
-    if (svgRef.current) {
-      manager.start(svgRef.current);
-    }
+	useEffect(() => {
+		if (svgRef.current) {
+			manager.start(svgRef.current);
+		}
 
-    return () => {
-      manager.stop();
-    };
-  }, [manager]);
+		return () => {
+			manager.stop();
+		};
+	}, [manager]);
 
-  return (
-    <div className="LaserToolOverlay">
-      <svg ref={svgRef} className="LaserToolOverlayCanvas" />
-    </div>
-  );
+	return (
+		<div className="LaserToolOverlay">
+			<svg ref={svgRef} className="LaserToolOverlayCanvas" />
+		</div>
+	);
 };

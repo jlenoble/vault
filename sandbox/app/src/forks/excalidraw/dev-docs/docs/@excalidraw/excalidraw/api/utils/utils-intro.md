@@ -119,9 +119,9 @@ import { loadSceneOrLibraryFromBlob, MIME_TYPES } from "@excalidraw/excalidraw";
 
 const contents = await loadSceneOrLibraryFromBlob(file, null, null);
 if (contents.type === MIME_TYPES.excalidraw) {
-  excalidrawAPI.updateScene(contents.data);
+	excalidrawAPI.updateScene(contents.data);
 } else if (contents.type === MIME_TYPES.excalidrawlib) {
-  excalidrawAPI.updateLibrary(contents.data);
+	excalidrawAPI.updateLibrary(contents.data);
 }
 ```
 
@@ -228,8 +228,8 @@ A hook that automatically imports library from url if `#addLibrary` hash key exi
 import { useHandleLibrary } from "@excalidraw/excalidraw";
 
 export const App = () => {
-  // ...
-  useHandleLibrary({ excalidrawAPI });
+	// ...
+	useHandleLibrary({ excalidrawAPI });
 };
 ```
 
@@ -298,32 +298,32 @@ Open the `main menu` in the below example to view the footer.
 
 ```jsx live noInline
 const MobileFooter = ({}) => {
-  const device = useDevice();
-  if (device.editor.isMobile) {
-    return (
-      <Footer>
-        <button
-          className="custom-footer"
-          style={{ marginLeft: "20px", height: "2rem" }}
-          onClick={() => alert("This is custom footer in mobile menu")}
-        >
-          custom footer
-        </button>
-      </Footer>
-    );
-  }
-  return null;
+	const device = useDevice();
+	if (device.editor.isMobile) {
+		return (
+			<Footer>
+				<button
+					className="custom-footer"
+					style={{ marginLeft: "20px", height: "2rem" }}
+					onClick={() => alert("This is custom footer in mobile menu")}
+				>
+					custom footer
+				</button>
+			</Footer>
+		);
+	}
+	return null;
 };
 const App = () => (
-  <div style={{ height: "400px" }}>
-    <Excalidraw>
-      <MainMenu>
-        <MainMenu.Item> Item1 </MainMenu.Item>
-        <MainMenu.Item> Item 2 </MainMenu.Item>
-        <MobileFooter />
-      </MainMenu>
-    </Excalidraw>
-  </div>
+	<div style={{ height: "400px" }}>
+		<Excalidraw>
+			<MainMenu>
+				<MainMenu.Item> Item1 </MainMenu.Item>
+				<MainMenu.Item> Item 2 </MainMenu.Item>
+				<MobileFooter />
+			</MainMenu>
+		</Excalidraw>
+	</div>
 );
 
 // Need to render when code is span across multiple components
@@ -333,21 +333,21 @@ render(<App />);
 
 The `device` has the following `attributes`
 
-| Name | Type | Description |
-| --- | --- | --- |
-| `isMobile` | `boolean` | Set to `true` when the device is `mobile` |
-| `isTouchScreen` | `boolean` | Set to `true` for `touch` devices |
+| Name                  | Type      | Description                                                |
+| --------------------- | --------- | ---------------------------------------------------------- |
+| `isMobile`            | `boolean` | Set to `true` when the device is `mobile`                  |
+| `isTouchScreen`       | `boolean` | Set to `true` for `touch` devices                          |
 | `canDeviceFitSidebar` | `boolean` | Implies whether there is enough space to fit the `sidebar` |
 
 ### i18n
 
 To help with localization, we export the following.
 
-| name | type |
-| --- | --- |
-| `defaultLang` | `string` |
-| `languages` | [`Language[]`](https://github.com/excalidraw/excalidraw/blob/master/src/i18n.ts#L15) |
-| `useI18n` | [`() => { langCode, t }`](https://github.com/excalidraw/excalidraw/blob/master/src/i18n.ts#L15) |
+| name          | type                                                                                            |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| `defaultLang` | `string`                                                                                        |
+| `languages`   | [`Language[]`](https://github.com/excalidraw/excalidraw/blob/master/src/i18n.ts#L15)            |
+| `useI18n`     | [`() => { langCode, t }`](https://github.com/excalidraw/excalidraw/blob/master/src/i18n.ts#L15) |
 
 ```js
 import { defaultLang, languages, useI18n } from "@excalidraw/excalidraw";
@@ -367,18 +367,18 @@ A hook that returns the current language code and translation helper function. Y
 
 ```jsx live
 function App() {
-  const { t } = useI18n();
-  return (
-    <div style={{ height: "500px" }}>
-      <Excalidraw>
-        <button
-          style={{ position: "absolute", zIndex: 10, height: "2rem" }}
-          onClick={() => window.alert(t("labels.madeWithExcalidraw"))}
-        >
-          {t("buttons.confirm")}
-        </button>
-      </Excalidraw>
-    </div>
-  );
+	const { t } = useI18n();
+	return (
+		<div style={{ height: "500px" }}>
+			<Excalidraw>
+				<button
+					style={{ position: "absolute", zIndex: 10, height: "2rem" }}
+					onClick={() => window.alert(t("labels.madeWithExcalidraw"))}
+				>
+					{t("buttons.confirm")}
+				</button>
+			</Excalidraw>
+		</div>
+	);
 }
 ```

@@ -6,13 +6,13 @@ You can enable this behavior by rendering a `WelcomeScreen` component like this:
 
 ```jsx live
 function App() {
-  return (
-    <div style={{ height: "46rem" }}>
-      <Excalidraw>
-        <WelcomeScreen />
-      </Excalidraw>
-    </div>
-  );
+	return (
+		<div style={{ height: "46rem" }}>
+			<Excalidraw>
+				<WelcomeScreen />
+			</Excalidraw>
+		</div>
+	);
 }
 ```
 
@@ -30,8 +30,8 @@ The welcome screen consists of two main groups of subcomponents:
 2. [WeelcomeScreen.Hints](#welcomescreenhints).
 
 <img
-  src={require("@site/static/img/welcome-screen-overview.png").default}
-  alt="Excalidraw logo: Sketch handrawn like diagrams."
+	src={require("@site/static/img/welcome-screen-overview.png").default}
+	alt="Excalidraw logo: Sketch handrawn like diagrams."
 />
 
 ### Center
@@ -40,26 +40,24 @@ The welcome screen consists of two main groups of subcomponents:
 
 ```jsx live
 function App() {
-  return (
-    <div style={{ height: "500px" }}>
-      <Excalidraw>
-        <WelcomeScreen>
-          <WelcomeScreen.Center>
-            <WelcomeScreen.Center.Logo />
-            <WelcomeScreen.Center.Heading>
-              Welcome Screen Heading!
-            </WelcomeScreen.Center.Heading>
-            <WelcomeScreen.Center.Menu>
-              <WelcomeScreen.Center.MenuItemLink href="https://github.com/excalidraw/excalidraw">
-                Excalidraw GitHub
-              </WelcomeScreen.Center.MenuItemLink>
-              <WelcomeScreen.Center.MenuItemHelp />
-            </WelcomeScreen.Center.Menu>
-          </WelcomeScreen.Center>
-        </WelcomeScreen>
-      </Excalidraw>
-    </div>
-  );
+	return (
+		<div style={{ height: "500px" }}>
+			<Excalidraw>
+				<WelcomeScreen>
+					<WelcomeScreen.Center>
+						<WelcomeScreen.Center.Logo />
+						<WelcomeScreen.Center.Heading>Welcome Screen Heading!</WelcomeScreen.Center.Heading>
+						<WelcomeScreen.Center.Menu>
+							<WelcomeScreen.Center.MenuItemLink href="https://github.com/excalidraw/excalidraw">
+								Excalidraw GitHub
+							</WelcomeScreen.Center.MenuItemLink>
+							<WelcomeScreen.Center.MenuItemHelp />
+						</WelcomeScreen.Center.Menu>
+					</WelcomeScreen.Center>
+				</WelcomeScreen>
+			</Excalidraw>
+		</div>
+	);
 }
 ```
 
@@ -87,23 +85,23 @@ The default menu items are:
 
 The `<WelcomeScreen.Center.MenuItem/>` component can be used to render a menu item.
 
-| Prop | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `onSelect` | `function` | Yes |  | The handler is triggered when the item is selected. |
-| `children` | `React.ReactNode` | Yes |  | The content of the menu item |
-| `icon` | `JSX.Element` | No |  | The icon used in the menu item |
-| `shortcut` | `string` | No |  | The keyboard shortcut (label-only, does not affect behavior) |
+| Prop       | Type              | Required | Default | Description                                                  |
+| ---------- | ----------------- | -------- | ------- | ------------------------------------------------------------ |
+| `onSelect` | `function`        | Yes      |         | The handler is triggered when the item is selected.          |
+| `children` | `React.ReactNode` | Yes      |         | The content of the menu item                                 |
+| `icon`     | `JSX.Element`     | No       |         | The icon used in the menu item                               |
+| `shortcut` | `string`          | No       |         | The keyboard shortcut (label-only, does not affect behavior) |
 
 **WelcomeScreen.Center.MenuItemLink**
 
 To render an external link in a menu item, you can use this component.
 
-| Prop | Type | Required | Default | Description |
-| --- | --- | --- | --- | --- |
-| `href` | `string` | Yes |  | The `href` attribute to be added to the `anchor` element. |
-| `children` | `React.ReactNode` | Yes |  | The content of the menu item |
-| `icon` | `JSX.Element` | No |  | The icon used in the menu item |
-| `shortcut` | `string` | No |  | The keyboard shortcut (label-only, does not affect behavior) |
+| Prop       | Type              | Required | Default | Description                                                  |
+| ---------- | ----------------- | -------- | ------- | ------------------------------------------------------------ |
+| `href`     | `string`          | Yes      |         | The `href` attribute to be added to the `anchor` element.    |
+| `children` | `React.ReactNode` | Yes      |         | The content of the menu item                                 |
+| `icon`     | `JSX.Element`     | No       |         | The icon used in the menu item                               |
+| `shortcut` | `string`          | No       |         | The keyboard shortcut (label-only, does not affect behavior) |
 
 ### Hints
 
@@ -111,19 +109,19 @@ These `<WelcomeScreen.Hints.*>` subcomponents render the UI hints. Text of each 
 
 ```jsx live
 function App() {
-  return (
-    <div style={{ height: "500px" }}>
-      <Excalidraw>
-        <WelcomeScreen>
-          <WelcomeScreen.Hints.ToolbarHint>
-            <p> ToolBar Hints </p>
-          </WelcomeScreen.Hints.ToolbarHint>
-          <WelcomeScreen.Hints.MenuHint />
-          <WelcomeScreen.Hints.HelpHint />
-        </WelcomeScreen>
-      </Excalidraw>
-    </div>
-  );
+	return (
+		<div style={{ height: "500px" }}>
+			<Excalidraw>
+				<WelcomeScreen>
+					<WelcomeScreen.Hints.ToolbarHint>
+						<p> ToolBar Hints </p>
+					</WelcomeScreen.Hints.ToolbarHint>
+					<WelcomeScreen.Hints.MenuHint />
+					<WelcomeScreen.Hints.HelpHint />
+				</WelcomeScreen>
+			</Excalidraw>
+		</div>
+	);
 }
 ```
 

@@ -1,34 +1,34 @@
 import ExcalidrawApp from "../../excalidraw-app";
 import {
-  mockBoundingClientRect,
-  render,
-  restoreOriginalGetBoundingClientRect,
+	mockBoundingClientRect,
+	render,
+	restoreOriginalGetBoundingClientRect,
 } from "../../src/tests/test-utils";
 
 import { UI } from "../../src/tests/helpers/ui";
 
 describe("Test MobileMenu", () => {
-  const { h } = window;
-  const dimensions = { height: 400, width: 800 };
+	const { h } = window;
+	const dimensions = { height: 400, width: 800 };
 
-  beforeAll(() => {
-    mockBoundingClientRect(dimensions);
-  });
+	beforeAll(() => {
+		mockBoundingClientRect(dimensions);
+	});
 
-  beforeEach(async () => {
-    await render(<ExcalidrawApp />);
-    // @ts-ignore
-    h.app.refreshViewportBreakpoints();
-    // @ts-ignore
-    h.app.refreshEditorBreakpoints();
-  });
+	beforeEach(async () => {
+		await render(<ExcalidrawApp />);
+		// @ts-ignore
+		h.app.refreshViewportBreakpoints();
+		// @ts-ignore
+		h.app.refreshEditorBreakpoints();
+	});
 
-  afterAll(() => {
-    restoreOriginalGetBoundingClientRect();
-  });
+	afterAll(() => {
+		restoreOriginalGetBoundingClientRect();
+	});
 
-  it("should set device correctly", () => {
-    expect(h.app.device).toMatchInlineSnapshot(`
+	it("should set device correctly", () => {
+		expect(h.app.device).toMatchInlineSnapshot(`
       {
         "editor": {
           "canFitSidebar": false,
@@ -41,11 +41,11 @@ describe("Test MobileMenu", () => {
         },
       }
     `);
-  });
+	});
 
-  it("should initialize with welcome screen and hide once user interacts", async () => {
-    expect(document.querySelector(".welcome-screen-center")).toMatchSnapshot();
-    UI.clickTool("rectangle");
-    expect(document.querySelector(".welcome-screen-center")).toBeNull();
-  });
+	it("should initialize with welcome screen and hide once user interacts", async () => {
+		expect(document.querySelector(".welcome-screen-center")).toMatchSnapshot();
+		UI.clickTool("rectangle");
+		expect(document.querySelector(".welcome-screen-center")).toBeNull();
+	});
 });

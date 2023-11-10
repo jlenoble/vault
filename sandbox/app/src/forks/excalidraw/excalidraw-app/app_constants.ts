@@ -13,36 +13,34 @@ export const FILE_UPLOAD_MAX_BYTES = 3 * 1024 * 1024; // 3 MiB
 export const FILE_CACHE_MAX_AGE_SEC = 31536000;
 
 export const WS_EVENTS = {
-  SERVER_VOLATILE: "server-volatile-broadcast",
-  SERVER: "server-broadcast",
+	SERVER_VOLATILE: "server-volatile-broadcast",
+	SERVER: "server-broadcast",
 };
 
 export enum WS_SCENE_EVENT_TYPES {
-  INIT = "SCENE_INIT",
-  UPDATE = "SCENE_UPDATE",
+	INIT = "SCENE_INIT",
+	UPDATE = "SCENE_UPDATE",
 }
 
 export const FIREBASE_STORAGE_PREFIXES = {
-  shareLinkFiles: `/files/shareLinks`,
-  collabFiles: `/files/rooms`,
+	shareLinkFiles: `/files/shareLinks`,
+	collabFiles: `/files/rooms`,
 };
 
 export const ROOM_ID_BYTES = 10;
 
 export const STORAGE_KEYS = {
-  LOCAL_STORAGE_ELEMENTS: "excalidraw",
-  LOCAL_STORAGE_APP_STATE: "excalidraw-state",
-  LOCAL_STORAGE_COLLAB: "excalidraw-collab",
-  LOCAL_STORAGE_LIBRARY: "excalidraw-library",
-  LOCAL_STORAGE_THEME: "excalidraw-theme",
-  VERSION_DATA_STATE: "version-dataState",
-  VERSION_FILES: "version-files",
+	LOCAL_STORAGE_ELEMENTS: "excalidraw",
+	LOCAL_STORAGE_APP_STATE: "excalidraw-state",
+	LOCAL_STORAGE_COLLAB: "excalidraw-collab",
+	LOCAL_STORAGE_LIBRARY: "excalidraw-library",
+	LOCAL_STORAGE_THEME: "excalidraw-theme",
+	VERSION_DATA_STATE: "version-dataState",
+	VERSION_FILES: "version-files",
 } as const;
 
 export const COOKIES = {
-  AUTH_STATE_COOKIE: "excplus-auth",
+	AUTH_STATE_COOKIE: "excplus-auth",
 } as const;
 
-export const isExcalidrawPlusSignedUser = document.cookie.includes(
-  COOKIES.AUTH_STATE_COOKIE,
-);
+export const isExcalidrawPlusSignedUser = document.cookie.includes(COOKIES.AUTH_STATE_COOKIE);
