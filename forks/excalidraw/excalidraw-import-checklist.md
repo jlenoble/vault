@@ -23,4 +23,4 @@ This file will help during the import process when using VS Code with the `Markd
 - [x] Commit all the files as they are with the message: 🔧 chore(XXX): initial fork From: XXX. Revision: RRR. All original files, with amended headers in README.md and LICENSE, and with added file XXX-import-checklist.md, to tag along all integration steps.
 - [ ] Start integration of X into Rush stack:
   - [x] Replace or inject global prettier (see @organon/prettier-config/README.md), then apply it to all files (`prettier . --write`).
-  - [ ] Commit all with the message: 🎨 style(excalidraw): apply repo prettier rules to all
+  - [x] Commit all with the message: 🎨 style(excalidraw): apply repo prettier rules to all
