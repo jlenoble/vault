@@ -119,7 +119,7 @@
 		"start": "vite",
 		"start:production": "npm run build && npx http-server build -a localhost -p 5001 -o",
 		"test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
-		"test:app": "vitest --config vitest.config.ts",
+		"test:app": "vitest run --config vitest.config.ts",
 		"test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
 		"//test:other": "yarn prettier --list-different",
 		"test:other": "prettier . --check --ignore-path=.eslintignore",
