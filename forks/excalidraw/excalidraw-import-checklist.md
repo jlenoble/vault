@@ -68,9 +68,21 @@ This file will help during the import process when using VS Code with the `Markd
             - [x] test and maybe add missing deps.
             - [x] pass tests
             - [x] Commit if any dep was added with the message "🐛 fix(excalidraw): add missing typescript deps".
-  - [ ] Change back `@organon/prettier-config` in package.json to `workspace:*`
-  - [ ] Add XXX to rush.json as a private package.
-  - [ ] Run rush update to get a sense of all that will break. The first errors will be about mismatched deps. Don't upgrade them in one go but do the following
+  - [x] Add XXX to rush.json as a private package.
+  - [x] Run rush update to get a sense of all that will break. The first errors will be about mismatched deps and maybe a missing version:
+    - [x] Fix the version if missing ("version": "0.0.0" will do).
+    - [x] Don't upgrade all the deps in one go but do the following:
+      - [x] For semvers differing only in patch numbers, replace all with the highest without '^' or '~'.
+      - [x] In XXX, pnpm install and run the test suite.
+      - [x] For semvers differing only in minor numbers, replace all versions with the highest semver without '^' or '~'.
+      - [x] In XXX, pnpm install and run the test suite.
+      - [x] For semvers differing in major numbers, replace all versions with the highest semver without '^' or '~'.
+      - [x] In XXX, pnpm install and run the test suite.
+      - [x] Commit with the message "🐛 fix(excalidraw): made deps consistent with repo"
+  - [x] Change back `@organon/prettier-config` in package.json to `workspace:*`
+  - [x] Remove node_modules and pnpm-lock.yaml.
+  - [x] rush update to complete install within the monorepo. This may yield a few more missing peer dependencies which will be dealt with later.
+  - [ ] Commit with the message "👷 build(excalidraw): place under rushstack"
   - [ ] Add the monorepo build scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
   - [ ] rush build
   - [ ] Add the monorepo test scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.

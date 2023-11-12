@@ -349,6 +349,11 @@
 			"packageName": "app",
 			"projectFolder": "sandbox/app",
 			"shouldPublish": false
+		},
+		{
+			"packageName": "excalidraw",
+			"projectFolder": "forks/excalidraw",
+			"shouldPublish": false
 		}
 		// {
 		//   /**
