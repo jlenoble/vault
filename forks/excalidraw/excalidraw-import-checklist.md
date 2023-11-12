@@ -21,6 +21,48 @@ This file will help during the import process when using VS Code with the `Markd
   - [x] In VS Code move this file `XXX-import-checklist.md` to `XXX` directory
   - [x] Delete `.git` directory as last step before initial commit.
 - [x] Commit all the files as they are with the message: 🔧 chore(XXX): initial fork From: XXX. Revision: RRR. All original files, with amended headers in README.md and LICENSE, and with added file XXX-import-checklist.md, to tag along all integration steps.
-- [ ] Start integration of X into Rush stack:
-  - [x] Replace or inject global prettier (see @organon/prettier-config/README.md), then apply it to all files (`prettier . --write`).
+- [x] Prettify
+  - [x] Replace or inject global prettier (see `@organon/prettier-config`/README.md), then apply it to all files (`prettier . --write`).
   - [x] Commit all with the message: 🎨 style(excalidraw): apply repo prettier rules to all
+- [ ] Integrate XXX into Rush stack:
+  - [x] Remove all temp files (check if there are `npm` scripts for that or do it manually).
+  - [ ] Handle installation:
+    - [x] Deal with Husky first (if applicable):
+      - [x] Explore the git hooks in .husky (or elsewhere, depending on the prepare `npm` script) and if some seem relevant, add equivalent tasks to the repo common git-hooks.
+      - [x] Remove the .husky or equivalent dir.
+      - [x] Remove or comment out any relative line from package.json (e.g. check the prepare/install scripts and remove the husky dev dep).
+      - [x] Commit with at least the message: 🔧 chore(excalidraw): remove husky
+    - [x] If something more than husky is done when preparing/installing, then think and don't break anything!
+    - [ ] Upgrading/fixing dependencies (most likely pnpm will scream about missing stuff):
+      - [x] Correct `@organon/prettier-config` dep in package.son (it pertains to workspace). Use `../../configs/prettier` instead.
+      - [ ] Local npm install for sanity check:
+        - [x] Delete node_modules.
+        - [x] Delete package-lock.json if any.
+        - [x] Reinstall with npm.
+        - [x] Keep warnings in npm-warnings.txt (but don't commit, we'll rely later on on pnpm).
+        - [ ] Run the test suite:
+          - [x] Eslint may not pass and may require to edit eslint config, especially if it uses prettier plugin. If you remove a plugin, start over npm local install.
+          - [x] commit if any change with the message "🐛 fix(excalidraw): tweak eslint config"
+          - [ ] Prettier should still pass.
+          - [ ] Type checking, when applicable, should still pass.
+          - [ ] Actual testing should still pass.
+      - [ ] Local pnpm install:
+        - [ ] Move node_modules to temp for reference.
+        - [ ] Delete pnpm-lock.yaml if any.
+        - [ ] Run a fresh install with pnpm, not rush update, to discover missing deps, if any.
+        - [ ] Add them to package.json
+        - [ ] Complete the installation
+        - [ ] Run the test suite to make sure nothing is broken yet:
+          - [ ] Prettier should still pass.
+          - [ ] Actual testing must still pass. Do it before linting and type checking, as the depency tree is handled straightforwardly by the tooling.
+          - [ ] Linting will likely yell because of missing refs.
+          - [ ] Type checking, when applicable, must still pass. Install missing refs
+      - [ ] Change back `@organon/prettier-config` in package.json to `workspace:*`
+      - [ ] Commit
+  - [ ] Add XXX to rush.json as a private package.
+  - [ ] Run rush update to get a sense of all that will break. The first errors will be about mismatched deps. Don't upgrade them in one go but do the following
+  - [ ] Add the monorepo build scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
+  - [ ] rush build
+  - [ ] Add the monorepo test scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
+  - [ ] rush test
+  - [ ] Replace/merge local eslint config with global eslint config.
