@@ -49,9 +49,7 @@ function App() {
 	return (
 		<div style={{ height: "500px" }}>
 			<Excalidraw
-				renderCustomStats={() => (
-					<p style={{ color: "#70b1ec", fontWeight: "bold" }}>Dummy stats will be shown here</p>
-				)}
+				renderCustomStats={() => <p style={{ color: "#70b1ec", fontWeight: "bold" }}>Dummy stats will be shown here</p>}
 			/>
 		</div>
 	);
@@ -62,8 +60,7 @@ function App() {
 
 <pre>
 	(element: NonDeleted&lt;ExcalidrawEmbeddableElement&gt;, appState:{" "}
-	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>) => JSX.Element
-	| null
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>) => JSX.Element | null
 </pre>
 
 Allows you to replace the renderer for embeddable elements (which renders `<iframe>` elements).

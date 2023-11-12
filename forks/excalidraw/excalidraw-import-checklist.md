@@ -43,7 +43,10 @@ This file will help during the import process when using VS Code with the `Markd
         - [ ] Run the test suite:
           - [x] Eslint may not pass and may require to edit eslint config, especially if it uses prettier plugin. If you remove a plugin, start over npm local install.
           - [x] commit if any change with the message "🐛 fix(excalidraw): tweak eslint config"
-          - [ ] Prettier should still pass.
+          - [x] Prettier may not pass any more if more files are added to the processing or local prettier differ from global prettier (which was used to prelint the whole package earlier before its first commit).
+          - [x] If files were added or prettier was upgraded, run 'prettier . --write'. to bring all files to standard.
+          - [x] Run 'prettier . --check' to verify the prettifying is stable. Otherwise try again to write all and recheck.
+          - [ ] commit if prettifying was changed and is stablilized with the message "🐛 fix(excalidraw): tweak prettier config"
           - [ ] Type checking, when applicable, should still pass.
           - [ ] Actual testing should still pass.
       - [ ] Local pnpm install:

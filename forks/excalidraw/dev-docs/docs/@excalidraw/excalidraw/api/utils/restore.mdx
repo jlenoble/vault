@@ -9,13 +9,10 @@ id: "restore"
 
 <pre>
 	restoreAppState(appState:{" "}
-	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/data/types.ts#L34">
-		ImportedDataState["appState"]
-	</a>
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/data/types.ts#L34">ImportedDataState["appState"]</a>
 	,<br />
-	&nbsp; localAppState: Partial&lt;<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">
-		AppState
-	</a>> | null): <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>
+	&nbsp; localAppState: Partial&lt;
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>> | null): <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>
 </pre>
 
 **_How to use_**
@@ -40,11 +37,11 @@ You can pass `null` / `undefined` if not applicable.
 		ImportedDataState["elements"]
 	</a>
 	,<br />
-	&nbsp; localElements: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">
-		ExcalidrawElement[]
-	</a> | null | undefined): <a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">
-		ExcalidrawElement[]
-	</a>,<br />
+	&nbsp; localElements:{" "}
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">ExcalidrawElement[]</a> |
+	null | undefined):{" "}
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">ExcalidrawElement[]</a>,
+	<br />
 	&nbsp; opts: &#123; refreshDimensions?: boolean, repairBindings?: boolean }<br />)
 </pre>
 
@@ -86,9 +83,8 @@ Parameter `refreshDimensions` indicates whether we should also `recalculate` tex
 	restore( data:{" "}
 	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/data/types.ts#L34">ImportedDataState</a>,
 	<br />
-	&nbsp; localAppState: Partial&lt;<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">
-		AppState
-	</a>> | null | undefined,
+	&nbsp; localAppState: Partial&lt;
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L95">AppState</a>> | null | undefined,
 	<br />
 	&nbsp; localElements: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">
 		ExcalidrawElement[]

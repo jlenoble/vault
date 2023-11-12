@@ -95,10 +95,9 @@ This prop if passed will be triggered on pointer down events and has the below s
 
 <pre>
 	(activeTool:{" "}
-	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L115"> AppState["activeTool"]</a>
-	, pointerDownState:{" "}
-	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L424">PointerDownState</a>) =>
-	void
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L115"> AppState["activeTool"]</a>,
+	pointerDownState:{" "}
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L424">PointerDownState</a>) => void
 </pre>
 
 ### onScrollChange
@@ -114,8 +113,8 @@ This prop if passed will be triggered when canvas is scrolled and has the below 
 This callback is triggered if passed when something is pasted into the scene. You can use this callback in case you want to do something additional when the paste event occurs.
 
 <pre>
-	(data: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/clipboard.ts#L18">ClipboardData</a>
-	, event: ClipboardEvent &#124; null) => boolean
+	(data: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/clipboard.ts#L18">ClipboardData</a>, event:
+	ClipboardEvent &#124; null) => boolean
 </pre>
 
 This callback must return a `boolean` value or a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/Promise) which resolves to a boolean value.
@@ -127,8 +126,8 @@ In case you want to prevent the excalidraw paste action you must return `false`,
 This callback if supplied will get triggered when the library is updated and has the below signature.
 
 <pre>
-	(items: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L200">LibraryItems</a>) =>
-	void | Promise&lt;any&gt;
+	(items: <a href="https://github.com/excalidraw/excalidraw/blob/master/src/types.ts#L200">LibraryItems</a>) => void |
+	Promise&lt;any&gt;
 </pre>
 
 It is invoked with empty items when user clears the library. You can use this callback when you want to do something additional when library is updated for example persisting it to local storage.
@@ -139,10 +138,8 @@ This prop if passed will be triggered when clicked on `link`. To handle the redi
 
 <pre>
 	(element:{" "}
-	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">
-		ExcalidrawElement
-	</a>
-	, event: CustomEvent&lt;&#123; nativeEvent: MouseEvent }&gt;) => void
+	<a href="https://github.com/excalidraw/excalidraw/blob/master/src/element/types.ts#L114">ExcalidrawElement</a>, event:
+	CustomEvent&lt;&#123; nativeEvent: MouseEvent }&gt;) => void
 </pre>
 
 Example:
