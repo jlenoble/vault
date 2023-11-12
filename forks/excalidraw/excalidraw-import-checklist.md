@@ -56,14 +56,19 @@ This file will help during the import process when using VS Code with the `Markd
         - [x] mv temp to node_modules/.temp to avoid chocking prettier or eslint. Move npm-warnings.txt too (we don't intend to commit it).
         - [ ] Run the test suite to make sure nothing is broken yet:
           - [x] Prettier should still pass.
-          - [ ] Actual testing may not pass but do it before linting and type checking, as the depedenncy tree is handled straightforwardly by the tooling. Most likely some deps are missing because pnpm doesn't flatten by default.
+          - [x] Actual testing may not pass but do it before linting and type checking, as the depedenncy tree is handled straightforwardly by the tooling. Most likely some deps are missing because pnpm doesn't flatten by default.
             - [x] test and maybe add missing deps.
             - [x] pass tests.
-            - [ ] Commit if any dep was added with the message "🐛 fix(excalidraw): add missing deps".
-          - [ ] Linting will likely yell because of missing refs.
-          - [ ] Type checking, when applicable, must still pass. Install missing refs
-      - [ ] Change back `@organon/prettier-config` in package.json to `workspace:*`
-      - [ ] Commit
+            - [x] Commit if any dep was added with the message "🐛 fix(excalidraw): add missing deps".
+          - [x] Linting may yell because of missing refs:
+            - [x] test and maybe add missing deps.
+            - [x] pass tests
+            - [x] Commit if any dep was added with the message "🐛 fix(excalidraw): add missing eslint deps".
+          - [ ] Type checking may yell because of missing refs:
+            - [x] test and maybe add missing deps.
+            - [x] pass tests
+            - [ ] Commit if any dep was added with the message "🐛 fix(excalidraw): add missing typescript deps".
+  - [ ] Change back `@organon/prettier-config` in package.json to `workspace:*`
   - [ ] Add XXX to rush.json as a private package.
   - [ ] Run rush update to get a sense of all that will break. The first errors will be about mismatched deps. Don't upgrade them in one go but do the following
   - [ ] Add the monorepo build scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
