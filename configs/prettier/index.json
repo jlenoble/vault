@@ -2,5 +2,12 @@
 	"$schema": "https://json.schemastore.org/prettierrc",
 	"printWidth": 110,
 	"endOfLine": "lf",
-	"useTabs": true
+	"useTabs": true,
+
+	"overrides": [
+		{
+			"files": "**/*.mdx",
+			"options": { "printWidth": 120 }
+		}
+	]
 }
