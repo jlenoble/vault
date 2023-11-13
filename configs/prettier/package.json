@@ -11,5 +11,13 @@
 		"url": "https://github.com/jlenoble/vault",
 		"directory": "configs/prettier"
 	},
-	"version": "1.0.0"
+	"version": "1.0.0",
+	"scripts": {
+		"prettier": "npm run _phase:prettier",
+		"_phase:prettier": "prettier config/ *.{json,md} --check"
+	},
+	"devDependencies": {
+		"@organon/base-rig": "workspace:*",
+		"prettier": "3.0.3"
+	}
 }

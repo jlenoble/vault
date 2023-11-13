@@ -199,9 +199,7 @@
 
 	"phases": [
 		{
-			"name": "_phase:prettier",
-			"allowWarningsOnSuccess": true,
-			"missingScriptBehavior": "silent"
+			"name": "_phase:prettier"
 		}
 	],
 

@@ -1,1 +1,1 @@
-# @organon/pbase-rig
+# @organon/base-rig

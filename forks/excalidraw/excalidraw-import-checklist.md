@@ -82,9 +82,7 @@ This file will help during the import process when using VS Code with the `Markd
   - [x] Change back `@organon/prettier-config` in package.json to `workspace:*`
   - [x] Remove node_modules and pnpm-lock.yaml.
   - [x] rush update to complete install within the monorepo. This may yield a few more missing peer dependencies which will be dealt with later.
-  - [ ] Commit with the message "👷 build(excalidraw): place under rushstack"
-  - [ ] Add the monorepo build scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
-  - [ ] rush build
-  - [ ] Add the monorepo test scripts. You may need to split, merge, duplicate or create `npm` run scripts to correspond to the repo commands.
-  - [ ] rush test
-  - [ ] Replace/merge local eslint config with global eslint config.
+  - [x] Commit with the message "👷 build(excalidraw): place under rushstack"
+  - [ ] test:
+    - [x] Integrate with repo prettier
+    - [ ] Commit

@@ -61,6 +61,7 @@
 	},
 	"devDependencies": {
 		"@babel/plugin-proposal-private-property-in-object": "7.21.11",
+		"@organon/base-rig": "workspace:*",
 		"@organon/prettier-config": "workspace:*",
 		"@testing-library/dom": "8.20.1",
 		"@types/chai": "4.3.0",
@@ -133,6 +134,8 @@
 		"autorelease": "node scripts/autorelease.js",
 		"prerelease": "node scripts/prerelease.js",
 		"build:preview": "yarn build && vite preview --port 5000",
-		"release": "node scripts/release.js"
+		"release": "node scripts/release.js",
+		"prettier": "npm run _phase:prettier",
+		"_phase:prettier": "prettier config/ dev-docs/ public/ scripts/ src/ *.{json,js,cjs,ts,html,md,yml} --check"
 	}
 }
