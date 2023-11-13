@@ -341,6 +341,11 @@
 	 */
 	"projects": [
 		{
+			"packageName": "@organon/base-rig",
+			"projectFolder": "rigs/base-rig",
+			"shouldPublish": false
+		},
+		{
 			"packageName": "@organon/prettier-config",
 			"projectFolder": "configs/prettier",
 			"shouldPublish": false

@@ -1,0 +1,12 @@
+{
+	"name": "@organon/base-rig",
+	"version": "0.0.0",
+	"license": "MIT",
+	"scripts": {
+		"prettier": "npm run _phase:prettier",
+		"_phase:prettier": "prettier profiles/ package.json README.md --check"
+	},
+	"devDependencies": {
+		"prettier": "3.0.3"
+	}
+}
