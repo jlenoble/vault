@@ -124,8 +124,8 @@
 		"test:app": "vitest run --config vitest.config.ts",
 		"test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
 		"//test:other": "yarn prettier --list-different",
-		"test:other": "prettier . --check --ignore-path=.eslintignore",
-		"test:typecheck": "tsc",
+		"///test:other": "prettier . --check --ignore-path=.eslintignore",
+		"//test:typecheck": "tsc",
 		"test:update": "yarn test:app --update --watch=false",
 		"test": "yarn test:app",
 		"test:coverage": "vitest --coverage",
@@ -136,6 +136,8 @@
 		"build:preview": "yarn build && vite preview --port 5000",
 		"release": "node scripts/release.js",
 		"prettier": "npm run _phase:prettier",
-		"_phase:prettier": "prettier config/ dev-docs/ public/ scripts/ src/ *.{json,js,cjs,ts,html,md,yml} --check"
+		"_phase:prettier": "prettier config/ dev-docs/ public/ scripts/ src/ *.{json,js,cjs,ts,html,md,yml} --check",
+		"typecheck": "npm run _phase:typecheck",
+		"_phase:typecheck": "tsc"
 	}
 }

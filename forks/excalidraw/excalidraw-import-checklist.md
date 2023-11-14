@@ -85,4 +85,4 @@ This file will help during the import process when using VS Code with the `Markd
   - [x] Commit with the message "👷 build(excalidraw): place under rushstack"
   - [ ] test:
     - [x] Integrate with repo prettier
-    - [ ] Commit
+    - [x] Integrate with repo typescript

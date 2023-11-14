@@ -20,6 +20,15 @@
 			"incremental": true,
 			"phases": ["_phase:prettier"]
 		},
+		{
+			"commandKind": "phased",
+			"name": "typecheck",
+			"summary": "Check typings incrementally in all managed projects with tsc",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:typecheck"]
+		},
 		// {
 		//   /**
 		//    * (Required) Determines the type of custom command.
@@ -200,6 +209,11 @@
 	"phases": [
 		{
 			"name": "_phase:prettier"
+		},
+		{
+			"name": "_phase:typecheck",
+			"dependencies": { "upstream": ["_phase:typecheck"] },
+			"missingScriptBehavior": "log"
 		}
 	],
 

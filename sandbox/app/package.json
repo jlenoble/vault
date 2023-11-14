@@ -9,7 +9,9 @@
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"prettier": "npm run _phase:prettier",
-		"_phase:prettier": "prettier config/ src/ *.{json,js,cjs,ts,html,md} --check"
+		"_phase:prettier": "prettier config/ src/ *.{json,js,cjs,ts,html,md} --check",
+		"typecheck": "npm run _phase:typecheck",
+		"_phase:typecheck": "tsc"
 	},
 	"dependencies": {
 		"react": "18.2.0",
