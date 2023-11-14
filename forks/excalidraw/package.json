@@ -118,7 +118,7 @@
 		"locales-coverage": "node scripts/build-locales-coverage.js",
 		"locales-coverage:description": "node scripts/locales-coverage-description.js",
 		"//prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
-		"start": "vite",
+		"//start": "vite",
 		"start:production": "npm run build && npx http-server build -a localhost -p 5001 -o",
 		"//test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
 		"//test:app": "vitest run --config vitest.config.ts",
@@ -143,6 +143,7 @@
 		"_phase:lint": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
 		"test": "npm run _phase:test",
 		"_phase:test": "echo 'Replaced long unrefactored tests with this skipped \"vitest run --config vitest.config.ts\" warning' 1>&2",
-		"test-all": "npm run typecheck && npm run lint && npm run prettier && npm run test"
+		"test-all": "npm run typecheck && npm run lint && npm run prettier && npm run test",
+		"dev": "vite"
 	}
 }

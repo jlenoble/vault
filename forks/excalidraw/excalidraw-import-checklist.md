@@ -24,7 +24,7 @@ This file will help during the import process when using VS Code with the `Markd
 - [x] Prettify
   - [x] Replace or inject global prettier (see `@organon/prettier-config`/README.md), then apply it to all files (`prettier . --write`).
   - [x] Commit all with the message: 🎨 style(excalidraw): apply repo prettier rules to all
-- [ ] Integrate XXX into Rush stack:
+- [x] Integrate XXX into Rush stack:
   - [x] Remove all temp files (check if there are `npm` scripts for that or do it manually).
   - [x] Handle installation:
     - [x] Deal with Husky first (if applicable):
@@ -83,8 +83,9 @@ This file will help during the import process when using VS Code with the `Markd
   - [x] Remove node_modules and pnpm-lock.yaml.
   - [x] rush update to complete install within the monorepo. This may yield a few more missing peer dependencies which will be dealt with later.
   - [x] Commit with the message "👷 build(excalidraw): place under rushstack"
-  - [ ] test:
+  - [x] test:
     - [x] Integrate with repo prettier
     - [x] Integrate with repo typescript
     - [x] Integrate with repo eslint
-    - [ ] Integrate with repo testing
+    - [x] Integrate with repo testing
+- [x] rushx dev starts dev server for web apps
