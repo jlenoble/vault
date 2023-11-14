@@ -20,12 +20,12 @@ const Sidebar = () => (
 	</aside>
 );
 const Main: FunctionComponent<PropsWithChildren> = ({ children }) => (
-	<main className="h-full w-full">{children || <CenteredSpinner />}</main>
+	<main className="h-full w-full">{children ?? <CenteredSpinner />}</main>
 );
 const Body: FunctionComponent<PropsWithChildren> = ({ children }) => (
 	<div className="flex h-full w-full flex-row text-gray-800 dark:text-gray-200">
 		<Sidebar />
-		<Main>{children || <CenteredSpinner />}</Main>
+		<Main>{children ?? <CenteredSpinner />}</Main>
 		<Sidebar />
 	</div>
 );
@@ -38,7 +38,7 @@ const Footer = () => (
 const MockLayout: FunctionComponent<PropsWithChildren> = ({ children }) => (
 	<>
 		<Header />
-		<Body>{children || <CenteredSpinner />}</Body>
+		<Body>{children ?? <CenteredSpinner />}</Body>
 		<Footer />
 	</>
 );
