@@ -86,3 +86,4 @@ This file will help during the import process when using VS Code with the `Markd
   - [ ] test:
     - [x] Integrate with repo prettier
     - [x] Integrate with repo typescript
+    - [x] Integrate with repo eslint

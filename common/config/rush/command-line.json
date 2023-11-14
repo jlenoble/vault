@@ -22,6 +22,15 @@
 		},
 		{
 			"commandKind": "phased",
+			"name": "lint",
+			"summary": "Lint code incrementally in all managed projects with eslint",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:lint"]
+		},
+		{
+			"commandKind": "phased",
 			"name": "typecheck",
 			"summary": "Check typings incrementally in all managed projects with tsc",
 			"enableParallelism": true,
@@ -209,6 +218,10 @@
 	"phases": [
 		{
 			"name": "_phase:prettier"
+		},
+		{
+			"name": "_phase:lint",
+			"missingScriptBehavior": "log"
 		},
 		{
 			"name": "_phase:typecheck",

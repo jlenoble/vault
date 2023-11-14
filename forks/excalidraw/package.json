@@ -122,7 +122,7 @@
 		"start:production": "npm run build && npx http-server build -a localhost -p 5001 -o",
 		"test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
 		"test:app": "vitest run --config vitest.config.ts",
-		"test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
+		"//test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
 		"//test:other": "yarn prettier --list-different",
 		"///test:other": "prettier . --check --ignore-path=.eslintignore",
 		"//test:typecheck": "tsc",
@@ -138,6 +138,8 @@
 		"prettier": "npm run _phase:prettier",
 		"_phase:prettier": "prettier config/ dev-docs/ public/ scripts/ src/ *.{json,js,cjs,ts,html,md,yml} --check",
 		"typecheck": "npm run _phase:typecheck",
-		"_phase:typecheck": "tsc"
+		"_phase:typecheck": "tsc",
+		"lint": "npm run _phase:lint",
+		"_phase:lint": "eslint --max-warnings=0 --ext .js,.ts,.tsx ."
 	}
 }
