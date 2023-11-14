@@ -40,7 +40,7 @@ interface NodeProps {
 	position: XYPosition;
 }
 
-const initialNodes: Array<NodeProps> = [
+const initialNodes: NodeProps[] = [
 	{
 		id: "1",
 		type: "input",
@@ -110,6 +110,7 @@ const TextUpdaterNode = () => {
 			<Handle type="target" position={Position.Top} />
 			<div className="flex flex-col">
 				<label htmlFor="text">Text:</label>
+				{/* eslint-disable-next-line tailwindcss/no-custom-classname */}
 				<input id="text" name="text" onChange={onChange} className="nodrag" />
 			</div>
 			<Handle type="source" position={Position.Bottom} id="a" style={{ left: 50 }} />
@@ -119,14 +120,16 @@ const TextUpdaterNode = () => {
 };
 
 const TreeDesigner = () => {
-	const [nodes, _setNodes, onNodesChange] = useNodesState<NodeData>(initialNodes);
+	const [nodes, , onNodesChange] = useNodesState<NodeData>(initialNodes);
 	const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
 	const [variant, setVariant] = useState(BackgroundVariant.Dots);
 	const nodeTypes = useMemo(() => ({ textUpdater: TextUpdaterNode }), []);
 
 	const onConnect = useCallback(
-		(params: Edge | Connection) => setEdges((eds) => addEdge(params, eds)),
+		(params: Edge | Connection) => {
+			setEdges((eds) => addEdge(params, eds));
+		},
 		[setEdges],
 	);
 
@@ -148,13 +151,28 @@ const TreeDesigner = () => {
 					<Background variant={variant} gap={12} size={1} />
 					<Panel position="top-left">
 						<div>variant:</div>
-						<button className="mx-2 bg-slate-500/80" onClick={() => setVariant(BackgroundVariant.Dots)}>
+						<button
+							className="mx-2 bg-slate-500/80"
+							onClick={() => {
+								setVariant(BackgroundVariant.Dots);
+							}}
+						>
 							dots
 						</button>
-						<button className="mx-2 bg-slate-500/80" onClick={() => setVariant(BackgroundVariant.Lines)}>
+						<button
+							className="mx-2 bg-slate-500/80"
+							onClick={() => {
+								setVariant(BackgroundVariant.Lines);
+							}}
+						>
 							lines
 						</button>
-						<button className="mx-2 bg-slate-500/80" onClick={() => setVariant(BackgroundVariant.Cross)}>
+						<button
+							className="mx-2 bg-slate-500/80"
+							onClick={() => {
+								setVariant(BackgroundVariant.Cross);
+							}}
+						>
 							cross
 						</button>
 					</Panel>

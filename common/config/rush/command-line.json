@@ -11,6 +11,51 @@
 	 * "rush my-global-command --help".
 	 */
 	"commands": [
+		{
+			"commandKind": "phased",
+			"name": "prettier",
+			"summary": "Runs Prettier incrementally in all managed projects",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:prettier"]
+		},
+		{
+			"commandKind": "phased",
+			"name": "lint",
+			"summary": "Lint code incrementally in all managed projects with eslint",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:lint"]
+		},
+		{
+			"commandKind": "phased",
+			"name": "typecheck",
+			"summary": "Check typings incrementally in all managed projects with tsc",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:typecheck"]
+		},
+		{
+			"commandKind": "phased",
+			"name": "test",
+			"summary": "Run all test suites incrementally in all managed projects",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:test"]
+		},
+		{
+			"commandKind": "phased",
+			"name": "test-all",
+			"summary": "Run incrementally all possible tests (except for coverage) in all managed projects",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:test-all"]
+		},
 		// {
 		//   /**
 		//    * (Required) Determines the type of custom command.
@@ -185,6 +230,31 @@
 
 			"shellCommand": "verdaccio",
 			"safeForSimultaneousRushProcesses": true
+		}
+	],
+
+	"phases": [
+		{
+			"name": "_phase:prettier"
+		},
+		{
+			"name": "_phase:lint",
+			"missingScriptBehavior": "log"
+		},
+		{
+			"name": "_phase:typecheck",
+			"dependencies": { "upstream": ["_phase:typecheck"] },
+			"missingScriptBehavior": "log"
+		},
+		{
+			"name": "_phase:test",
+			"dependencies": { "upstream": ["_phase:test"] },
+			"missingScriptBehavior": "log"
+		},
+		{
+			"name": "_phase:test-all",
+			"dependencies": { "self": ["_phase:typecheck", "_phase:lint", "_phase:prettier", "_phase:test"] },
+			"missingScriptBehavior": "log"
 		}
 	],
 

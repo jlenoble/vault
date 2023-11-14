@@ -1,0 +1,11 @@
+{
+	"$schema": "https://developer.microsoft.com/json-schemas/rush/v5/rush-project.schema.json",
+
+	"operationSettings": [
+		{ "operationName": "_phase:prettier" },
+		{ "operationName": "_phase:lint" },
+		{ "operationName": "_phase:typecheck" },
+		{ "operationName": "_phase:test" },
+		{ "operationName": "_phase:test-all" }
+	]
+}

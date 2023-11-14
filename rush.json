@@ -341,8 +341,23 @@
 	 */
 	"projects": [
 		{
+			"packageName": "@organon/base-rig",
+			"projectFolder": "rigs/base-rig",
+			"shouldPublish": false
+		},
+		{
+			"packageName": "@organon/prettier-config",
+			"projectFolder": "configs/prettier",
+			"shouldPublish": false
+		},
+		{
 			"packageName": "app",
 			"projectFolder": "sandbox/app",
+			"shouldPublish": false
+		},
+		{
+			"packageName": "excalidraw",
+			"projectFolder": "forks/excalidraw",
 			"shouldPublish": false
 		}
 		// {
