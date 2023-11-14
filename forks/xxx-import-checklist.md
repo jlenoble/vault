@@ -1,0 +1,91 @@
+# Forks
+
+This file will help during the import process when using VS Code with the `Markdown all in one` extension.
+
+- Do `Ctrl-k v` to see the interactive checkboxes.
+- In the new panel, boxes show which steps are already done.
+
+### As an exploration strategy:
+
+- [ ] Shallow-clone a github repository XXX (flag `--depth 1`) in `forks` directory. The repository **must** be MIT Licensed, as we don't want to deal with all the intricacies of License entangling.
+- [ ] Update the README and the LICENSE files of the repository with:
+  - [ ] At the top of the README file:
+    ### Forking notice
+    This package/app/monorepository is a fork of [XXX](https://github.com/vendor/x.git), revision `RRR`. [MIT](https://opensource.org/license/mit/) License, Copyright (c) YYYY, [Vendor](https://vendor.com). [MIT](https://opensource.org/license/mit/) License, Copyright (c) 2023-last commit year, Jason Lenoble, <jason.lenoble@gmail.com>
+  - [ ] At the top of the LICENSE file (which must be explicitly MIT), but after the original copyrights: Copyright (c), Jason Lenoble, <jason.lenoble@gmail.com>
+- [ ] Create a new branch XXX and check it out: `git checkout -b XXX`.
+- [ ] cd into the root directory of the imported files and:
+  - [ ] Depending on the lock file (if any), use `npm`, `yarn` or `pnpm` to install as first choice. If the package manager fails, try another. If all fail, uncheck everything and start over with an earlier revision.
+  - [ ] Find out how to run the test suite, and if any, run it all.
+  - [ ] Try to run the actual app or to import the package into the sandbox.
+  - [ ] In VS Code move this file `XXX-import-checklist.md` to `XXX` directory
+  - [ ] Delete `.git` directory as last step before initial commit.
+- [ ] Commit all the files as they are with the message: 🔧 chore(XXX): initial fork From: XXX. Revision: RRR. All original files, with amended headers in README.md and LICENSE, and with added file XXX-import-checklist.md, to tag along all integration steps.
+- [ ] Prettify
+  - [ ] Replace or inject global prettier (see `@organon/prettier-config`/README.md), then apply it to all files (`prettier . --write`).
+  - [ ] Commit all with the message: 🎨 style(xxx): apply repo prettier rules to all
+- [ ] Integrate XXX into Rush stack:
+  - [ ] Remove all temp files (check if there are `npm` scripts for that or do it manually).
+  - [ ] Handle installation:
+    - [ ] Deal with Husky first (if applicable):
+      - [ ] Explore the git hooks in .husky (or elsewhere, depending on the prepare `npm` script) and if some seem relevant, add equivalent tasks to the repo common git-hooks.
+      - [ ] Remove the .husky or equivalent dir.
+      - [ ] Remove or comment out any relative line from package.json (e.g. check the prepare/install scripts and remove the husky dev dep).
+      - [ ] Commit with at least the message: 🔧 chore(xxx): remove husky
+    - [ ] If something more than husky is done when preparing/installing, then think and don't break anything!
+    - [ ] Upgrading/fixing dependencies (most likely pnpm will scream about missing stuff):
+      - [ ] Correct `@organon/prettier-config` dep in package.son (it pertains to workspace). Use `../../configs/prettier` instead.
+      - [ ] Local npm install for sanity check:
+        - [ ] Delete node_modules.
+        - [ ] Delete package-lock.json if any.
+        - [ ] Reinstall with npm.
+        - [ ] Keep warnings in npm-warnings.txt (but don't commit, we'll rely later on on pnpm).
+        - [ ] Run the test suite:
+          - [ ] Eslint may not pass and may require to edit eslint config, especially if it uses prettier plugin. If you remove a plugin, start over npm local install.
+          - [ ] commit if any change with the message "🐛 fix(xxx): tweak eslint config"
+          - [ ] Prettier may not pass any more if more files are added to the processing or local prettier differ from global prettier (which was used to prelint the whole package earlier before its first commit).
+          - [ ] If files were added or prettier was upgraded, run 'prettier . --write'. to bring all files to standard.
+          - [ ] Run 'prettier . --check' to verify the prettifying is stable. Otherwise try again to write all and recheck.
+          - [ ] commit if prettifying was changed and is stablilized with the message "🐛 fix(xxx): tweak prettier config"
+          - [ ] Type checking, when applicable, should still pass.
+          - [ ] Actual testing should still pass.
+      - [ ] Local pnpm install:
+        - [ ] Move node_modules to temp for reference.
+        - [ ] Delete pnpm-lock.yaml if any.
+        - [ ] Run a fresh install with pnpm, not rush update.
+        - [ ] mv temp to node_modules/.temp to avoid chocking prettier or eslint. Move npm-warnings.txt too (we don't intend to commit it).
+        - [ ] Run the test suite to make sure nothing is broken yet:
+          - [ ] Prettier should still pass.
+          - [ ] Actual testing may not pass but do it before linting and type checking, as the depedenncy tree is handled straightforwardly by the tooling. Most likely some deps are missing because pnpm doesn't flatten by default.
+            - [ ] test and maybe add missing deps.
+            - [ ] pass tests.
+            - [ ] Commit if any dep was added with the message "🐛 fix(xxx): add missing deps".
+          - [ ] Linting may yell because of missing refs:
+            - [ ] test and maybe add missing deps.
+            - [ ] pass tests
+            - [ ] Commit if any dep was added with the message "🐛 fix(xxx): add missing eslint deps".
+          - [ ] Type checking may yell because of missing refs:
+            - [ ] test and maybe add missing deps.
+            - [ ] pass tests
+            - [ ] Commit if any dep was added with the message "🐛 fix(xxx): add missing typescript deps".
+  - [ ] Add XXX to rush.json as a private package.
+  - [ ] Run rush update to get a sense of all that will break. The first errors will be about mismatched deps and maybe a missing version:
+    - [ ] Fix the version if missing ("version": "0.0.0" will do).
+    - [ ] Don't upgrade all the deps in one go but do the following:
+      - [ ] For semvers differing only in patch numbers, replace all with the highest without '^' or '~'.
+      - [ ] In XXX, pnpm install and run the test suite.
+      - [ ] For semvers differing only in minor numbers, replace all versions with the highest semver without '^' or '~'.
+      - [ ] In XXX, pnpm install and run the test suite.
+      - [ ] For semvers differing in major numbers, replace all versions with the highest semver without '^' or '~'.
+      - [ ] In XXX, pnpm install and run the test suite.
+      - [ ] Commit with the message "🐛 fix(xxx): made deps consistent with repo"
+  - [ ] Change back `@organon/prettier-config` in package.json to `workspace:*`
+  - [ ] Remove node_modules and pnpm-lock.yaml.
+  - [ ] rush update to complete install within the monorepo. This may yield a few more missing peer dependencies which will be dealt with later.
+  - [ ] Commit with the message "👷 build(xxx): place under rushstack"
+  - [ ] test:
+    - [ ] Integrate with repo prettier
+    - [ ] Integrate with repo typescript
+    - [ ] Integrate with repo eslint
+    - [ ] Integrate with repo testing
+- [ ] rushx dev starts dev server for web apps
