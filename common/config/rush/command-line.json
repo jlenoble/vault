@@ -38,6 +38,24 @@
 			"incremental": true,
 			"phases": ["_phase:typecheck"]
 		},
+		{
+			"commandKind": "phased",
+			"name": "test",
+			"summary": "Run all test suites incrementally in all managed projects",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:test"]
+		},
+		{
+			"commandKind": "phased",
+			"name": "test-all",
+			"summary": "Run incrementally all possible tests (except for coverage) in all managed projects",
+			"enableParallelism": true,
+			"safeForSimultaneousRushProcesses": true,
+			"incremental": true,
+			"phases": ["_phase:test-all"]
+		},
 		// {
 		//   /**
 		//    * (Required) Determines the type of custom command.
@@ -226,6 +244,16 @@
 		{
 			"name": "_phase:typecheck",
 			"dependencies": { "upstream": ["_phase:typecheck"] },
+			"missingScriptBehavior": "log"
+		},
+		{
+			"name": "_phase:test",
+			"dependencies": { "upstream": ["_phase:test"] },
+			"missingScriptBehavior": "log"
+		},
+		{
+			"name": "_phase:test-all",
+			"dependencies": { "self": ["_phase:typecheck", "_phase:lint", "_phase:prettier", "_phase:test"] },
 			"missingScriptBehavior": "log"
 		}
 	],

@@ -120,14 +120,14 @@
 		"//prettier": "prettier \"**/*.{css,scss,json,md,html,yml}\" --ignore-path=.eslintignore",
 		"start": "vite",
 		"start:production": "npm run build && npx http-server build -a localhost -p 5001 -o",
-		"test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
-		"test:app": "vitest run --config vitest.config.ts",
+		"//test:all": "yarn test:typecheck && yarn test:code && yarn test:other && yarn test:app --watch=false",
+		"//test:app": "vitest run --config vitest.config.ts",
 		"//test:code": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
 		"//test:other": "yarn prettier --list-different",
 		"///test:other": "prettier . --check --ignore-path=.eslintignore",
 		"//test:typecheck": "tsc",
 		"test:update": "yarn test:app --update --watch=false",
-		"test": "yarn test:app",
+		"//test": "yarn test:app",
 		"test:coverage": "vitest --coverage",
 		"test:coverage:watch": "vitest --coverage --watch",
 		"test:ui": "yarn test --ui --coverage.enabled=true",
@@ -140,6 +140,9 @@
 		"typecheck": "npm run _phase:typecheck",
 		"_phase:typecheck": "tsc",
 		"lint": "npm run _phase:lint",
-		"_phase:lint": "eslint --max-warnings=0 --ext .js,.ts,.tsx ."
+		"_phase:lint": "eslint --max-warnings=0 --ext .js,.ts,.tsx .",
+		"test": "npm run _phase:test",
+		"_phase:test": "vitest run --config vitest.config.ts",
+		"test-all": "npm run typecheck && npm run lint && npm run prettier && npm run test"
 	}
 }
